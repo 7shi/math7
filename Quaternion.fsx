@@ -1,13 +1,13 @@
 type Quaternion =
     E | I | J | K
 
-    member x.Next =
-        match x with
-        | E -> E | I -> J | J -> K | K -> I
-
     override x.ToString() =
         match x with
         | E -> "1" | I -> "i" | J -> "j" | K -> "k"
+
+    member x.Next =
+        match x with
+        | E -> E | I -> J | J -> K | K -> I
 
     static member (*)(a:Quaternion, b:Quaternion) =
         match a, b with
