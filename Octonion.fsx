@@ -24,7 +24,7 @@ type Octonion =
         | H x, H y            -> y * x    // i_hj_h = ji
         |   x, H E            ->  1, H x  // ih = i_h
         |   x, H y when x = y -> -1, H E  // ii_h = -h
-        |   x, H y -> let c, z = y * x    // ij_h = -k_h
+        |   x, H y -> let c, z = y * x    // ij_h = (ji)h
                       c, H z
         |   x,   y when x.Next = y        // ij = k
                    -> 1, y.Next
