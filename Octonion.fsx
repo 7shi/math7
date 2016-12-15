@@ -1,6 +1,12 @@
 type Octonion =
     E | I | J | K | H of Octonion
 
+    override x.ToString() =
+        match x with
+        |   E -> "1" | I -> "i" | J -> "j" | K -> "k"
+        | H E -> "h"
+        | H x -> string x + "_h"
+
     member x.Next =
         match x with
         |   I -> J
@@ -8,12 +14,6 @@ type Octonion =
         |   K -> I
         | H x -> H x.Next
         |   x -> x
-
-    override x.ToString() =
-        match x with
-        |   E -> "1" | I -> "i" | J -> "j" | K -> "k"
-        | H E -> "h"
-        | H x -> string x + "_h"
 
     static member (*) (a:Octonion, b:Octonion) =
         match a, b with
