@@ -9,7 +9,7 @@ type Quaternion =
         match x with
         | E -> "1" | I -> "i" | J -> "j" | K -> "k"
 
-    static member (*) (a:Quaternion, b:Quaternion) =
+    static member (*)(a:Quaternion, b:Quaternion) =
         match a, b with
         | x, E            ->  1, x  // i1 = i
         | E, y            ->  1, y  // 1i = i

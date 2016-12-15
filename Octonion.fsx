@@ -15,7 +15,7 @@ type Octonion =
         | H x -> H x.Next
         |   x -> x
 
-    static member (*) (a:Octonion, b:Octonion) =
+    static member (*)(a:Octonion, b:Octonion) =
         match a, b with
         |   x,   E            ->  1,   x  // i1 = i
         |   E,   y            ->  1,   y  // 1i = i
