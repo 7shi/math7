@@ -1,0 +1,92 @@
+
+## 代数式
+
+```math
+\begin{align}
+&(a_1x+a_2y+a_3z)(b_1x+b_2y+b_3z) \\
+&=a_1x(b_1x+b_2y+b_3z) \\
+&\quad +a_2y(b_1x+b_2y+b_3z) \\
+&\quad +a_3z(b_1x+b_2y+b_3z) \\
+&=a_1b_1x^2+a_1b_2xy+a_1b_3\underbrace{xz}_{zx} \\
+&\quad +a_2b_1\underbrace{yx}_{xy}+a_2b_2y^2+a_2b_3yz \\
+&\quad +a_3b_1zx+a_3b_2\underbrace{zy}_{yz}+a_3b_3z^2 \\
+&=a_1b_1x^2+a_2b_2y^2+a_3b_3z^2 \\
+&\quad +(a_1b_2+a_2b_1)xy+(a_2b_3+a_3b_2)yz+(a_1b_3+a_3b_1)zx \\
+\end{align}
+```
+
+## テンソル積
+
+```math
+\begin{align}
+&(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3})\otimes (b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}) \\
+&=a_1\vec{e_1}\otimes (b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}) \\
+&\quad +a_2\vec{e_2}\otimes (b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}) \\
+&\quad +a_3\vec{e_3}\otimes (b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}) \\
+&=a_1b_1\vec{e_1}\otimes \vec{e_1}+a_1b_2\vec{e_1}\otimes \vec{e_2}+a_1b_3\vec{e_1}\otimes \vec{e_3} \\
+&\quad +a_2b_1\vec{e_2}\otimes \vec{e_1}+a_2b_2\vec{e_2}\otimes \vec{e_2}+a_2b_3\vec{e_2}\otimes \vec{e_3} \\
+&\quad +a_3b_1\vec{e_3}\otimes \vec{e_1}+a_3b_2\vec{e_3}\otimes \vec{e_2}+a_3b_3\vec{e_3}\otimes \vec{e_3} \\
+\end{align}
+```
+
+## ウェッジ積
+
+```math
+\begin{align}
+&(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3})∧(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}) \\
+&=a_1\vec{e_1}∧(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}) \\
+&\quad +a_2\vec{e_2}∧(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}) \\
+&\quad +a_3\vec{e_3}∧(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}) \\
+&=a_1b_1\underbrace{\vec{e_1}∧\vec{e_1}}_{0}+a_1b_2\vec{e_1}∧\vec{e_2}+a_1b_3\underbrace{\vec{e_1}∧\vec{e_3}}_{-\vec{e_3}∧\vec{e_1}} \\
+&\quad +a_2b_1\underbrace{\vec{e_2}∧\vec{e_1}}_{-\vec{e_1}∧\vec{e_2}}+a_2b_2\underbrace{\vec{e_2}∧\vec{e_2}}_{0}+a_2b_3\vec{e_2}∧\vec{e_3} \\
+&\quad +a_3b_1\vec{e_3}∧\vec{e_1}+a_3b_2\underbrace{\vec{e_3}∧\vec{e_2}}_{-\vec{e_2}∧\vec{e_3}}+a_3b_3\underbrace{\vec{e_3}∧\vec{e_3}}_{0} \\
+&=(a_1b_2-a_2b_1)\vec{e_1}∧\vec{e_2}+(a_2b_3-a_3b_2)\vec{e_2}∧\vec{e_3}+(a_3b_1-a_1b_3)\vec{e_3}∧\vec{e_1} \\
+\end{align}
+```
+
+## ベクトル積
+
+```math
+\begin{align}
+&(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3})×(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}) \\
+&=a_1\vec{e_1}×(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}) \\
+&\quad +a_2\vec{e_2}×(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}) \\
+&\quad +a_3\vec{e_3}×(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}) \\
+&=a_1b_1\underbrace{\vec{e_1}×\vec{e_1}}_{0}+a_1b_2\underbrace{\vec{e_1}×\vec{e_2}}_{\vec{e_3}}+a_1b_3\underbrace{\vec{e_1}×\vec{e_3}}_{-\vec{e_2}} \\
+&\quad +a_2b_1\underbrace{\vec{e_2}×\vec{e_1}}_{-\vec{e_3}}+a_2b_2\underbrace{\vec{e_2}×\vec{e_2}}_{0}+a_2b_3\underbrace{\vec{e_2}×\vec{e_3}}_{\vec{e_1}} \\
+&\quad +a_3b_1\underbrace{\vec{e_3}×\vec{e_1}}_{\vec{e_2}}+a_3b_2\underbrace{\vec{e_3}×\vec{e_2}}_{-\vec{e_1}}+a_3b_3\underbrace{\vec{e_3}×\vec{e_3}}_{0} \\
+&=(a_2b_3-a_3b_2)\vec{e_1}+(a_3b_1-a_1b_3)\vec{e_2}+(a_1b_2-a_2b_1)\vec{e_3} \\
+\end{align}
+```
+
+## 幾何学積
+
+```math
+\begin{align}
+&(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3})(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}) \\
+&=a_1\vec{e_1}(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}) \\
+&\quad +a_2\vec{e_2}(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}) \\
+&\quad +a_3\vec{e_3}(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}) \\
+&=a_1b_1\underbrace{\vec{e_1}\vec{e_1}}_{1}+a_1b_2\vec{e_1}\vec{e_2}+a_1b_3\underbrace{\vec{e_1}\vec{e_3}}_{-\vec{e_3}\vec{e_1}} \\
+&\quad +a_2b_1\underbrace{\vec{e_2}\vec{e_1}}_{-\vec{e_1}\vec{e_2}}+a_2b_2\underbrace{\vec{e_2}\vec{e_2}}_{1}+a_2b_3\vec{e_2}\vec{e_3} \\
+&\quad +a_3b_1\vec{e_3}\vec{e_1}+a_3b_2\underbrace{\vec{e_3}\vec{e_2}}_{-\vec{e_2}\vec{e_3}}+a_3b_3\underbrace{\vec{e_3}\vec{e_3}}_{1} \\
+&=(a_1b_1+a_2b_2+a_3b_3) \\
+&\quad +(a_1b_2-a_2b_1)\vec{e_1}\vec{e_2}+(a_2b_3-a_3b_2)\vec{e_2}\vec{e_3}+(a_3b_1-a_1b_3)\vec{e_3}\vec{e_1} \\
+\end{align}
+```
+
+## 四元数
+
+```math
+\begin{align}
+&(a_1i+a_2j+a_3k)(b_1i+b_2j+b_3k) \\
+&=a_1i(b_1i+b_2j+b_3k) \\
+&\quad +a_2j(b_1i+b_2j+b_3k) \\
+&\quad +a_3k(b_1i+b_2j+b_3k) \\
+&=a_1b_1\underbrace{i^2}_{-1}+a_1b_2\underbrace{ij}_{k}+a_1b_3\underbrace{ik}_{-j} \\
+&\quad +a_2b_1\underbrace{ji}_{-k}+a_2b_2\underbrace{j^2}_{-1}+a_2b_3\underbrace{jk}_{i} \\
+&\quad +a_3b_1\underbrace{ki}_{j}+a_3b_2\underbrace{kj}_{-i}+a_3b_3\underbrace{k^2}_{-1} \\
+&=-(a_1b_1+a_2b_2+a_3b_3) \\
+&\quad +(a_2b_3-a_3b_2)i+(a_3b_1-a_1b_3)j+(a_1b_2-a_2b_1)k \\
+\end{align}
+```

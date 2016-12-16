@@ -1,0 +1,136 @@
+
+## 積（虚部）
+
+```math
+\begin{align}
+&(a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h)(b_1i+b_2j+b_3k+b_4h+b_5i_h+b_6j_h+b_7k_h) \\
+&=a_1i(b_1i+b_2j+b_3k+b_4h+b_5i_h+b_6j_h+b_7k_h) \\
+&\quad +a_2j(b_1i+b_2j+b_3k+b_4h+b_5i_h+b_6j_h+b_7k_h) \\
+&\quad +a_3k(b_1i+b_2j+b_3k+b_4h+b_5i_h+b_6j_h+b_7k_h) \\
+&\quad +a_4h(b_1i+b_2j+b_3k+b_4h+b_5i_h+b_6j_h+b_7k_h) \\
+&\quad +a_5i_h(b_1i+b_2j+b_3k+b_4h+b_5i_h+b_6j_h+b_7k_h) \\
+&\quad +a_6j_h(b_1i+b_2j+b_3k+b_4h+b_5i_h+b_6j_h+b_7k_h) \\
+&\quad +a_7k_h(b_1i+b_2j+b_3k+b_4h+b_5i_h+b_6j_h+b_7k_h) \\
+&=a_1b_1\underbrace{i^2}_{-1}+a_1b_2\underbrace{ij}_{k}+a_1b_3\underbrace{ik}_{-j}+a_1b_4\underbrace{ih}_{i_h}+a_1b_5\underbrace{ii_h}_{-h}+a_1b_6\underbrace{ij_h}_{-k_h}+a_1b_7\underbrace{ik_h}_{j_h} \\
+&\quad +a_2b_1\underbrace{ji}_{-k}+a_2b_2\underbrace{j^2}_{-1}+a_2b_3\underbrace{jk}_{i}+a_2b_4\underbrace{jh}_{j_h}+a_2b_5\underbrace{ji_h}_{k_h}+a_2b_6\underbrace{jj_h}_{-h}+a_2b_7\underbrace{jk_h}_{-i_h} \\
+&\quad +a_3b_1\underbrace{ki}_{j}+a_3b_2\underbrace{kj}_{-i}+a_3b_3\underbrace{k^2}_{-1}+a_3b_4\underbrace{kh}_{k_h}+a_3b_5\underbrace{ki_h}_{-j_h}+a_3b_6\underbrace{kj_h}_{i_h}+a_3b_7\underbrace{kk_h}_{-h} \\
+&\quad +a_4b_1\underbrace{hi}_{-i_h}+a_4b_2\underbrace{hj}_{-j_h}+a_4b_3\underbrace{hk}_{-k_h}+a_4b_4\underbrace{h^2}_{-1}+a_4b_5\underbrace{hi_h}_{i}+a_4b_6\underbrace{hj_h}_{j}+a_4b_7\underbrace{hk_h}_{k} \\
+&\quad +a_5b_1\underbrace{i_hi}_{h}+a_5b_2\underbrace{i_hj}_{-k_h}+a_5b_3\underbrace{i_hk}_{j_h}+a_5b_4\underbrace{i_hh}_{-i}+a_5b_5\underbrace{i_h^2}_{-1}+a_5b_6\underbrace{i_hj_h}_{-k}+a_5b_7\underbrace{i_hk_h}_{j} \\
+&\quad +a_6b_1\underbrace{j_hi}_{k_h}+a_6b_2\underbrace{j_hj}_{h}+a_6b_3\underbrace{j_hk}_{-i_h}+a_6b_4\underbrace{j_hh}_{-j}+a_6b_5\underbrace{j_hi_h}_{k}+a_6b_6\underbrace{j_h^2}_{-1}+a_6b_7\underbrace{j_hk_h}_{-i} \\
+&\quad +a_7b_1\underbrace{k_hi}_{-j_h}+a_7b_2\underbrace{k_hj}_{i_h}+a_7b_3\underbrace{k_hk}_{h}+a_7b_4\underbrace{k_hh}_{-k}+a_7b_5\underbrace{k_hi_h}_{-j}+a_7b_6\underbrace{k_hj_h}_{i}+a_7b_7\underbrace{k_h^2}_{-1} \\
+&=-(a_1b_1+a_2b_2+a_3b_3+a_4b_4+a_5b_5+a_6b_6+a_7b_7) \\
+&\quad +(a_2b_3-a_3b_2+a_4b_5-a_5b_4+a_7b_6-a_6b_7)i \\
+&\quad +(a_3b_1-a_1b_3+a_4b_6-a_6b_4+a_5b_7-a_7b_5)j \\
+&\quad +(a_1b_2-a_2b_1+a_4b_7-a_7b_4+a_6b_5-a_5b_6)k \\
+&\quad +(a_5b_1-a_1b_5+a_6b_2-a_2b_6+a_7b_3-a_3b_7)h \\
+&\quad +(a_1b_4-a_4b_1+a_7b_2-a_2b_7+a_3b_6-a_6b_3)i_h \\
+&\quad +(a_1b_7-a_7b_1+a_2b_4-a_4b_2+a_5b_3-a_3b_5)j_h \\
+&\quad +(a_6b_1-a_1b_6+a_2b_5-a_5b_2+a_3b_4-a_4b_3)k_h \\
+\end{align}
+```
+
+## 積（実部＋虚部）
+
+```math
+\begin{align}
+&(a_0+a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h)(b_0+b_1i+b_2j+b_3k+b_4h+b_5i_h+b_6j_h+b_7k_h) \\
+&=a_0(b_0+b_1i+b_2j+b_3k+b_4h+b_5i_h+b_6j_h+b_7k_h) \\
+&\quad +a_1i(b_0+b_1i+b_2j+b_3k+b_4h+b_5i_h+b_6j_h+b_7k_h) \\
+&\quad +a_2j(b_0+b_1i+b_2j+b_3k+b_4h+b_5i_h+b_6j_h+b_7k_h) \\
+&\quad +a_3k(b_0+b_1i+b_2j+b_3k+b_4h+b_5i_h+b_6j_h+b_7k_h) \\
+&\quad +a_4h(b_0+b_1i+b_2j+b_3k+b_4h+b_5i_h+b_6j_h+b_7k_h) \\
+&\quad +a_5i_h(b_0+b_1i+b_2j+b_3k+b_4h+b_5i_h+b_6j_h+b_7k_h) \\
+&\quad +a_6j_h(b_0+b_1i+b_2j+b_3k+b_4h+b_5i_h+b_6j_h+b_7k_h) \\
+&\quad +a_7k_h(b_0+b_1i+b_2j+b_3k+b_4h+b_5i_h+b_6j_h+b_7k_h) \\
+&=a_0b_0+a_0b_1i+a_0b_2j+a_0b_3k+a_0b_4h+a_0b_5i_h+a_0b_6j_h+a_0b_7k_h \\
+&\quad +a_1b_0i+a_1b_1\underbrace{i^2}_{-1}+a_1b_2\underbrace{ij}_{k}+a_1b_3\underbrace{ik}_{-j}+a_1b_4\underbrace{ih}_{i_h}+a_1b_5\underbrace{ii_h}_{-h}+a_1b_6\underbrace{ij_h}_{-k_h}+a_1b_7\underbrace{ik_h}_{j_h} \\
+&\quad +a_2b_0j+a_2b_1\underbrace{ji}_{-k}+a_2b_2\underbrace{j^2}_{-1}+a_2b_3\underbrace{jk}_{i}+a_2b_4\underbrace{jh}_{j_h}+a_2b_5\underbrace{ji_h}_{k_h}+a_2b_6\underbrace{jj_h}_{-h}+a_2b_7\underbrace{jk_h}_{-i_h} \\
+&\quad +a_3b_0k+a_3b_1\underbrace{ki}_{j}+a_3b_2\underbrace{kj}_{-i}+a_3b_3\underbrace{k^2}_{-1}+a_3b_4\underbrace{kh}_{k_h}+a_3b_5\underbrace{ki_h}_{-j_h}+a_3b_6\underbrace{kj_h}_{i_h}+a_3b_7\underbrace{kk_h}_{-h} \\
+&\quad +a_4b_0h+a_4b_1\underbrace{hi}_{-i_h}+a_4b_2\underbrace{hj}_{-j_h}+a_4b_3\underbrace{hk}_{-k_h}+a_4b_4\underbrace{h^2}_{-1}+a_4b_5\underbrace{hi_h}_{i}+a_4b_6\underbrace{hj_h}_{j}+a_4b_7\underbrace{hk_h}_{k} \\
+&\quad +a_5b_0i_h+a_5b_1\underbrace{i_hi}_{h}+a_5b_2\underbrace{i_hj}_{-k_h}+a_5b_3\underbrace{i_hk}_{j_h}+a_5b_4\underbrace{i_hh}_{-i}+a_5b_5\underbrace{i_h^2}_{-1}+a_5b_6\underbrace{i_hj_h}_{-k}+a_5b_7\underbrace{i_hk_h}_{j} \\
+&\quad +a_6b_0j_h+a_6b_1\underbrace{j_hi}_{k_h}+a_6b_2\underbrace{j_hj}_{h}+a_6b_3\underbrace{j_hk}_{-i_h}+a_6b_4\underbrace{j_hh}_{-j}+a_6b_5\underbrace{j_hi_h}_{k}+a_6b_6\underbrace{j_h^2}_{-1}+a_6b_7\underbrace{j_hk_h}_{-i} \\
+&\quad +a_7b_0k_h+a_7b_1\underbrace{k_hi}_{-j_h}+a_7b_2\underbrace{k_hj}_{i_h}+a_7b_3\underbrace{k_hk}_{h}+a_7b_4\underbrace{k_hh}_{-k}+a_7b_5\underbrace{k_hi_h}_{-j}+a_7b_6\underbrace{k_hj_h}_{i}+a_7b_7\underbrace{k_h^2}_{-1} \\
+&=(a_0b_0-a_1b_1-a_2b_2-a_3b_3-a_4b_4-a_5b_5-a_6b_6-a_7b_7) \\
+&\quad +(a_0b_1+a_1b_0+a_2b_3-a_3b_2+a_4b_5-a_5b_4+a_7b_6-a_6b_7)i \\
+&\quad +(a_0b_2+a_2b_0+a_3b_1-a_1b_3+a_4b_6-a_6b_4+a_5b_7-a_7b_5)j \\
+&\quad +(a_0b_3+a_3b_0+a_1b_2-a_2b_1+a_4b_7-a_7b_4+a_6b_5-a_5b_6)k \\
+&\quad +(a_0b_4+a_4b_0+a_5b_1-a_1b_5+a_6b_2-a_2b_6+a_7b_3-a_3b_7)h \\
+&\quad +(a_0b_5+a_5b_0+a_1b_4-a_4b_1+a_7b_2-a_2b_7+a_3b_6-a_6b_3)i_h \\
+&\quad +(a_0b_6+a_6b_0+a_1b_7-a_7b_1+a_2b_4-a_4b_2+a_5b_3-a_3b_5)j_h \\
+&\quad +(a_0b_7+a_7b_0+a_6b_1-a_1b_6+a_2b_5-a_5b_2+a_3b_4-a_4b_3)k_h \\
+\end{align}
+```
+
+## 二乗（虚部）
+
+```math
+\begin{align}
+&(a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h)^2 \\
+&=a_1i(a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&\quad +a_2j(a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&\quad +a_3k(a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&\quad +a_4h(a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&\quad +a_5i_h(a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&\quad +a_6j_h(a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&\quad +a_7k_h(a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&=a_1^2\underbrace{i^2}_{-1}+a_1a_2\underbrace{ij}_{k}+a_1a_3\underbrace{ik}_{-j}+a_1a_4\underbrace{ih}_{i_h}+a_1a_5\underbrace{ii_h}_{-h}+a_1a_6\underbrace{ij_h}_{-k_h}+a_1a_7\underbrace{ik_h}_{j_h} \\
+&\quad +a_2a_1\underbrace{ji}_{-k}+a_2^2\underbrace{j^2}_{-1}+a_2a_3\underbrace{jk}_{i}+a_2a_4\underbrace{jh}_{j_h}+a_2a_5\underbrace{ji_h}_{k_h}+a_2a_6\underbrace{jj_h}_{-h}+a_2a_7\underbrace{jk_h}_{-i_h} \\
+&\quad +a_3a_1\underbrace{ki}_{j}+a_3a_2\underbrace{kj}_{-i}+a_3^2\underbrace{k^2}_{-1}+a_3a_4\underbrace{kh}_{k_h}+a_3a_5\underbrace{ki_h}_{-j_h}+a_3a_6\underbrace{kj_h}_{i_h}+a_3a_7\underbrace{kk_h}_{-h} \\
+&\quad +a_4a_1\underbrace{hi}_{-i_h}+a_4a_2\underbrace{hj}_{-j_h}+a_4a_3\underbrace{hk}_{-k_h}+a_4^2\underbrace{h^2}_{-1}+a_4a_5\underbrace{hi_h}_{i}+a_4a_6\underbrace{hj_h}_{j}+a_4a_7\underbrace{hk_h}_{k} \\
+&\quad +a_5a_1\underbrace{i_hi}_{h}+a_5a_2\underbrace{i_hj}_{-k_h}+a_5a_3\underbrace{i_hk}_{j_h}+a_5a_4\underbrace{i_hh}_{-i}+a_5^2\underbrace{i_h^2}_{-1}+a_5a_6\underbrace{i_hj_h}_{-k}+a_5a_7\underbrace{i_hk_h}_{j} \\
+&\quad +a_6a_1\underbrace{j_hi}_{k_h}+a_6a_2\underbrace{j_hj}_{h}+a_6a_3\underbrace{j_hk}_{-i_h}+a_6a_4\underbrace{j_hh}_{-j}+a_6a_5\underbrace{j_hi_h}_{k}+a_6^2\underbrace{j_h^2}_{-1}+a_6a_7\underbrace{j_hk_h}_{-i} \\
+&\quad +a_7a_1\underbrace{k_hi}_{-j_h}+a_7a_2\underbrace{k_hj}_{i_h}+a_7a_3\underbrace{k_hk}_{h}+a_7a_4\underbrace{k_hh}_{-k}+a_7a_5\underbrace{k_hi_h}_{-j}+a_7a_6\underbrace{k_hj_h}_{i}+a_7^2\underbrace{k_h^2}_{-1} \\
+&=-(a_1^2+a_2^2+a_3^2+a_4^2+a_5^2+a_6^2+a_7^2) \\
+\end{align}
+```
+
+## 二乗（実部＋虚部）
+
+```math
+\begin{align}
+&(a_0+a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h)^2 \\
+&=a_0(a_0+a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&\quad +a_1i(a_0+a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&\quad +a_2j(a_0+a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&\quad +a_3k(a_0+a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&\quad +a_4h(a_0+a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&\quad +a_5i_h(a_0+a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&\quad +a_6j_h(a_0+a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&\quad +a_7k_h(a_0+a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&=a_0^2+a_0a_1i+a_0a_2j+a_0a_3k+a_0a_4h+a_0a_5i_h+a_0a_6j_h+a_0a_7k_h \\
+&\quad +a_1a_0i+a_1^2\underbrace{i^2}_{-1}+a_1a_2\underbrace{ij}_{k}+a_1a_3\underbrace{ik}_{-j}+a_1a_4\underbrace{ih}_{i_h}+a_1a_5\underbrace{ii_h}_{-h}+a_1a_6\underbrace{ij_h}_{-k_h}+a_1a_7\underbrace{ik_h}_{j_h} \\
+&\quad +a_2a_0j+a_2a_1\underbrace{ji}_{-k}+a_2^2\underbrace{j^2}_{-1}+a_2a_3\underbrace{jk}_{i}+a_2a_4\underbrace{jh}_{j_h}+a_2a_5\underbrace{ji_h}_{k_h}+a_2a_6\underbrace{jj_h}_{-h}+a_2a_7\underbrace{jk_h}_{-i_h} \\
+&\quad +a_3a_0k+a_3a_1\underbrace{ki}_{j}+a_3a_2\underbrace{kj}_{-i}+a_3^2\underbrace{k^2}_{-1}+a_3a_4\underbrace{kh}_{k_h}+a_3a_5\underbrace{ki_h}_{-j_h}+a_3a_6\underbrace{kj_h}_{i_h}+a_3a_7\underbrace{kk_h}_{-h} \\
+&\quad +a_4a_0h+a_4a_1\underbrace{hi}_{-i_h}+a_4a_2\underbrace{hj}_{-j_h}+a_4a_3\underbrace{hk}_{-k_h}+a_4^2\underbrace{h^2}_{-1}+a_4a_5\underbrace{hi_h}_{i}+a_4a_6\underbrace{hj_h}_{j}+a_4a_7\underbrace{hk_h}_{k} \\
+&\quad +a_5a_0i_h+a_5a_1\underbrace{i_hi}_{h}+a_5a_2\underbrace{i_hj}_{-k_h}+a_5a_3\underbrace{i_hk}_{j_h}+a_5a_4\underbrace{i_hh}_{-i}+a_5^2\underbrace{i_h^2}_{-1}+a_5a_6\underbrace{i_hj_h}_{-k}+a_5a_7\underbrace{i_hk_h}_{j} \\
+&\quad +a_6a_0j_h+a_6a_1\underbrace{j_hi}_{k_h}+a_6a_2\underbrace{j_hj}_{h}+a_6a_3\underbrace{j_hk}_{-i_h}+a_6a_4\underbrace{j_hh}_{-j}+a_6a_5\underbrace{j_hi_h}_{k}+a_6^2\underbrace{j_h^2}_{-1}+a_6a_7\underbrace{j_hk_h}_{-i} \\
+&\quad +a_7a_0k_h+a_7a_1\underbrace{k_hi}_{-j_h}+a_7a_2\underbrace{k_hj}_{i_h}+a_7a_3\underbrace{k_hk}_{h}+a_7a_4\underbrace{k_hh}_{-k}+a_7a_5\underbrace{k_hi_h}_{-j}+a_7a_6\underbrace{k_hj_h}_{i}+a_7^2\underbrace{k_h^2}_{-1} \\
+&=(a_0^2-a_1^2-a_2^2-a_3^2-a_4^2-a_5^2-a_6^2-a_7^2) \\
+&\quad +2a_0a_1i+2a_0a_2j+2a_0a_3k+2a_0a_4h+2a_0a_5i_h+2a_0a_6j_h+2a_0a_7k_h \\
+\end{align}
+```
+
+## ノルムの二乗
+
+```math
+\begin{align}
+&(a_0-a_1i-a_2j-a_3k-a_4h-a_5i_h-a_6j_h-a_7k_h)(a_0+a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&=a_0(a_0+a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&\quad -a_1i(a_0+a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&\quad -a_2j(a_0+a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&\quad -a_3k(a_0+a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&\quad -a_4h(a_0+a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&\quad -a_5i_h(a_0+a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&\quad -a_6j_h(a_0+a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&\quad -a_7k_h(a_0+a_1i+a_2j+a_3k+a_4h+a_5i_h+a_6j_h+a_7k_h) \\
+&=a_0^2+a_0a_1i+a_0a_2j+a_0a_3k+a_0a_4h+a_0a_5i_h+a_0a_6j_h+a_0a_7k_h \\
+&\quad -a_1a_0i-a_1^2\underbrace{i^2}_{-1}-a_1a_2\underbrace{ij}_{k}-a_1a_3\underbrace{ik}_{-j}-a_1a_4\underbrace{ih}_{i_h}-a_1a_5\underbrace{ii_h}_{-h}-a_1a_6\underbrace{ij_h}_{-k_h}-a_1a_7\underbrace{ik_h}_{j_h} \\
+&\quad -a_2a_0j-a_2a_1\underbrace{ji}_{-k}-a_2^2\underbrace{j^2}_{-1}-a_2a_3\underbrace{jk}_{i}-a_2a_4\underbrace{jh}_{j_h}-a_2a_5\underbrace{ji_h}_{k_h}-a_2a_6\underbrace{jj_h}_{-h}-a_2a_7\underbrace{jk_h}_{-i_h} \\
+&\quad -a_3a_0k-a_3a_1\underbrace{ki}_{j}-a_3a_2\underbrace{kj}_{-i}-a_3^2\underbrace{k^2}_{-1}-a_3a_4\underbrace{kh}_{k_h}-a_3a_5\underbrace{ki_h}_{-j_h}-a_3a_6\underbrace{kj_h}_{i_h}-a_3a_7\underbrace{kk_h}_{-h} \\
+&\quad -a_4a_0h-a_4a_1\underbrace{hi}_{-i_h}-a_4a_2\underbrace{hj}_{-j_h}-a_4a_3\underbrace{hk}_{-k_h}-a_4^2\underbrace{h^2}_{-1}-a_4a_5\underbrace{hi_h}_{i}-a_4a_6\underbrace{hj_h}_{j}-a_4a_7\underbrace{hk_h}_{k} \\
+&\quad -a_5a_0i_h-a_5a_1\underbrace{i_hi}_{h}-a_5a_2\underbrace{i_hj}_{-k_h}-a_5a_3\underbrace{i_hk}_{j_h}-a_5a_4\underbrace{i_hh}_{-i}-a_5^2\underbrace{i_h^2}_{-1}-a_5a_6\underbrace{i_hj_h}_{-k}-a_5a_7\underbrace{i_hk_h}_{j} \\
+&\quad -a_6a_0j_h-a_6a_1\underbrace{j_hi}_{k_h}-a_6a_2\underbrace{j_hj}_{h}-a_6a_3\underbrace{j_hk}_{-i_h}-a_6a_4\underbrace{j_hh}_{-j}-a_6a_5\underbrace{j_hi_h}_{k}-a_6^2\underbrace{j_h^2}_{-1}-a_6a_7\underbrace{j_hk_h}_{-i} \\
+&\quad -a_7a_0k_h-a_7a_1\underbrace{k_hi}_{-j_h}-a_7a_2\underbrace{k_hj}_{i_h}-a_7a_3\underbrace{k_hk}_{h}-a_7a_4\underbrace{k_hh}_{-k}-a_7a_5\underbrace{k_hi_h}_{-j}-a_7a_6\underbrace{k_hj_h}_{i}-a_7^2\underbrace{k_h^2}_{-1} \\
+&=a_0^2+a_1^2+a_2^2+a_3^2+a_4^2+a_5^2+a_6^2+a_7^2 \\
+\end{align}
+```
