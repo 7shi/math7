@@ -1,12 +1,7 @@
 namespace Math7
 
 type term(n:int, a:string list, e:int list) =
-    new(n      ) = term(n, [], [])
-    new(n, a   ) = term(n, a , [])
-    new(   a   ) = term(1, a , [])
-    new(   a, e) = term(1, a , e )
-    new(      e) = term(1, [], e )
-    new(n,    e) = term(n, [], e )
+    new n = term(n, [], [])
     member x.N = n
     member x.A = a
     member x.E = e
@@ -17,8 +12,18 @@ type term(n:int, a:string list, e:int list) =
     override x.ToString() = "term" + (n, a, e).ToString()
 
 module Term =
+    let dupNA (t:term) = term(t.N, t.A, [] )
+    let dupE  (t:term) = term(1  , [] , t.E)
     let addSign (v:string) =
         if v.StartsWith "-" then v else "+" + v
+
+    let split  t  = dupNA t, dupE t
+    let splits ts = ts |> List.map split
+
+    let bracket (s:string) =
+        if   s.Contains "\{" then  "[" + s +  "]"
+        elif s.Contains  "(" then "\{" + s + "\}"
+        else                       "(" + s +  ")"
 
     let strPower (ss:string seq) =
         ss
@@ -44,6 +49,23 @@ module Term =
         |> Seq.mapi (fun i t ->
             let t = str f t
             if i = 0 then t else addSign t)
+        |> String.concat ""
+
+    let str2E f e =
+        let s = str f e
+        if e.N < 0 then bracket s else s
+
+    let str2 f (a, e) =
+        match strA a, str2E f e with
+        | "", "1" -> "1"
+        | a , "1" -> a
+        | a , e   -> a + e
+
+    let strs2 f ts =
+        ts
+        |> Seq.mapi (fun i t ->
+            let s = str2 f t
+            if i = 0 then s else addSign s)
         |> String.concat ""
 
     let prodA (t1:term) (t2:term) =
@@ -87,42 +109,35 @@ module Term =
         |> Seq.map (sprintf @"\vec{e_%d}")
         |> String.concat op
 
-    let prodTerms title op f (g:int list->term) sort1 sort2 h a b =
-        printfn @""
-        printfn "%s" title
-        printfn @""
-        printfn "```math"
-        printfn @"\begin{align}"
-        let sa, sb = strs f a, strs f b
-        if op = "" && sa = sb then
-            printfn @"&(%s)^2 \\" sa
-        else
-            printfn @"&(%s)%s(%s) \\" sa op sb
-        a |> List.iteri (fun i a1 ->
-            let s = str f a1
+    let prodTermsCore op f (g:int list -> term) sort1 sort2 h al bl =
+        let sa = strs2 f al |> bracket
+        let sb = strs2 f bl |> bracket
+        al |> Seq.iteri (fun i a ->
+            let s = str2 f a
             if i = 0 then
-                printfn @"&=%s%s(%s) \\" s op sb
+                printfn @"&=%s%s%s \\" s op sb
             else
-                printfn @"&\quad %s%s(%s) \\" (addSign s) op sb)
+                printfn @"&\quad %s%s%s \\" (addSign s) op sb)
         let c =
-            a |> List.mapi (fun i a1 ->
-                let list = b |> List.mapi (fun j b1 ->
-                    let p = prod a1 b1
-                    let ge = g p.E
+            al |> List.mapi (fun i (aa, ae) ->
+                let list = bl |> List.mapi (fun j (ba, be) ->
+                    let pa = prod aa ba
+                    let pe = prod ae be
+                    let ge = pe.N * g pe.E
                     let sp =
-                        let sa, se = strA p, f p.E
-                        if p.E = ge.E then sa + se else
-                        sprintf @"%s\underbrace{%s}_{%s}" sa se (str f ge)
+                        let se = str2E f pe
+                        if se = str2E f ge then str2 f (pa, pe) else
+                        sprintf @"%s\underbrace{%s}_{%s}" (strA pa) se (str f ge)
                     match i, j with
                     | 0, 0 -> printf @"&=%s" sp
                     | _, 0 -> printf @"&\quad %s" (addSign sp)
                     | _, _ -> printf @"%s" (addSign sp)
-                    prod (term(p.N, p.A, [])) ge)
+                    prod pa ge)
                 printfn @" \\"
                 list)
-            |> Seq.concat
+            |> List.concat
         let d = c |> simplify |> List.sortBy (fst >> sort1)
-        if d.Length < Seq.length c then
+        if d.Length < c.Length then
             d |> List.iteri (fun i (e, al) ->
                 let sign, slist =
                     let slist =
@@ -151,5 +166,18 @@ module Term =
                         printf @"&\quad "
                     printf "%s%s" (addSign sal) se)
             printfn @" \\"
+
+    let prodTerms title op f g sort1 sort2 h a b =
+        printfn @""
+        printfn "%s" title
+        printfn @""
+        printfn "```math"
+        printfn @"\begin{align}"
+        let sa, sb = strs f a |> bracket, strs f b |> bracket
+        if op = "" && sa = sb then
+            printfn @"&%s^2 \\" sa
+        else
+            printfn @"&%s%s%s \\" sa op sb
+        prodTermsCore op f g sort1 sort2 h (splits a) (splits b)
         printfn @"\end{align}"
         printfn "```"
