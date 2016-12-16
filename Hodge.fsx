@@ -1,9 +1,8 @@
 #load "Math7.fsx"
 open Math7
 
-let vec = Term.vec "∧"
-let str (a, e) = Term.str2 vec (a, e)
-let strs = Term.strs2 vec
+let vec  = Term.vec "∧"
+let strs = Term.strs vec
 
 let bsort xs =
     let rec bswap n = function
@@ -37,25 +36,33 @@ let rmPair (t:term) =
 let simplify (t:term) =
     let len = Seq.length (rmPair t).E
     if Seq.length t.E = len then sort t else term.Zero
-
 let simplifyE e = term(1, [], e) |> simplify
 
 let hodge n (t:term) =
     term(t.N, t.A, List.append (List.rev t.E) [1..n]) |> sort |> rmPair
 let hodges n = List.map (fun (e, al) -> hodge n e, al)
 
-let n = 4
-printfn @"\begin{align}"
-printfn @"&\vec{a}∧(\star\vec{b}) \\"
-let a = Term.splits [for i in [1..n] -> term(1, [sprintf "a_%d" i], [i])]
-let b = Term.splits [for i in [1..n] -> term(1, [sprintf "b_%d" i], [i])]
-let sa, sb = strs a |> Term.bracket, strs b |> Term.bracket
-printfn @"&=%s∧\star%s \\" sa sb
-let hb = b |> List.map (fun (a, e) -> (a, hodge n e))
-printfn @"&=%s∧\star%s \\" sa (strs hb |> Term.bracket)
-let _, d = Term.prodTerms1 "∧" vec simplifyE id a hb
-let pt = Term.prodTerms2 vec Term.byIndexSign ((=) 1)
-pt "" d
-hodges n d |> pt "\star"
-printfn @"&=\star(\vec{a}\cdot\vec{b})"
-printfn @"\end{align}"
+let prodTerms title n =
+    printfn @""
+    printfn "%s" title
+    printfn @""
+    printfn "```math"
+    printfn @"\begin{align}"
+    printfn @"&\vec{a}∧(\star\vec{b}) \\"
+    let a = [for i in [1..n] -> term(1, [sprintf "a_%d" i], [i])]
+    let b = [for i in [1..n] -> term(1, [sprintf "b_%d" i], [i])]
+    let sa, sb = strs a |> Term.bracket, strs b |> Term.bracket
+    printfn @"&=%s∧\star%s \\" sa sb
+    let hb = b |> Term.splits |> List.map (fun (a, e) -> (a, hodge n e))
+    printfn @"&=%s∧\star%s \\" sa (Term.strs2 vec hb |> Term.bracket)
+    let _, d = Term.prodTerms1 "∧" vec simplifyE id (Term.splits a) hb
+    let pt = Term.prodTerms2 vec Term.byIndexSign ((=) 1)
+    pt "" d
+    hodges n d |> pt "\star"
+    printfn @"&=\star(\vec{a}\cdot\vec{b})"
+    printfn @"\end{align}"
+    printfn "```"
+
+prodTerms "## 2次元" 2
+prodTerms "## 3次元" 3
+prodTerms "## 4次元" 4
