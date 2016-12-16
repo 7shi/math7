@@ -1,0 +1,16 @@
+\begin{align}
+&\vec{a}∧(\star\vec{b}) \\
+&=(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3}+a_4\vec{e_4})∧\star(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}+b_4\vec{e_4}) \\
+&=(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3}+a_4\vec{e_4})∧\star\{b_1\vec{e_2}∧\vec{e_3}∧\vec{e_4}+b_2(-\vec{e_1}∧\vec{e_3}∧\vec{e_4})+b_3\vec{e_1}∧\vec{e_2}∧\vec{e_4}+b_4(-\vec{e_1}∧\vec{e_2}∧\vec{e_3})\} \\
+&=a_1\vec{e_1}∧\{b_1\vec{e_2}∧\vec{e_3}∧\vec{e_4}+b_2(-\vec{e_1}∧\vec{e_3}∧\vec{e_4})+b_3\vec{e_1}∧\vec{e_2}∧\vec{e_4}+b_4(-\vec{e_1}∧\vec{e_2}∧\vec{e_3})\} \\
+&\quad +a_2\vec{e_2}∧\{b_1\vec{e_2}∧\vec{e_3}∧\vec{e_4}+b_2(-\vec{e_1}∧\vec{e_3}∧\vec{e_4})+b_3\vec{e_1}∧\vec{e_2}∧\vec{e_4}+b_4(-\vec{e_1}∧\vec{e_2}∧\vec{e_3})\} \\
+&\quad +a_3\vec{e_3}∧\{b_1\vec{e_2}∧\vec{e_3}∧\vec{e_4}+b_2(-\vec{e_1}∧\vec{e_3}∧\vec{e_4})+b_3\vec{e_1}∧\vec{e_2}∧\vec{e_4}+b_4(-\vec{e_1}∧\vec{e_2}∧\vec{e_3})\} \\
+&\quad +a_4\vec{e_4}∧\{b_1\vec{e_2}∧\vec{e_3}∧\vec{e_4}+b_2(-\vec{e_1}∧\vec{e_3}∧\vec{e_4})+b_3\vec{e_1}∧\vec{e_2}∧\vec{e_4}+b_4(-\vec{e_1}∧\vec{e_2}∧\vec{e_3})\} \\
+&=a_1b_1\vec{e_1}∧\vec{e_2}∧\vec{e_3}∧\vec{e_4}+a_1b_2\underbrace{(-\vec{e_1}∧\vec{e_1}∧\vec{e_3}∧\vec{e_4})}_{0}+a_1b_3\underbrace{\vec{e_1}∧\vec{e_1}∧\vec{e_2}∧\vec{e_4}}_{0}+a_1b_4\underbrace{(-\vec{e_1}∧\vec{e_1}∧\vec{e_2}∧\vec{e_3})}_{0} \\
+&\quad +a_2b_1\underbrace{\vec{e_2}∧\vec{e_2}∧\vec{e_3}∧\vec{e_4}}_{0}+a_2b_2\underbrace{(-\vec{e_2}∧\vec{e_1}∧\vec{e_3}∧\vec{e_4})}_{\vec{e_1}∧\vec{e_2}∧\vec{e_3}∧\vec{e_4}}+a_2b_3\underbrace{\vec{e_2}∧\vec{e_1}∧\vec{e_2}∧\vec{e_4}}_{0}+a_2b_4\underbrace{(-\vec{e_2}∧\vec{e_1}∧\vec{e_2}∧\vec{e_3})}_{0} \\
+&\quad +a_3b_1\underbrace{\vec{e_3}∧\vec{e_2}∧\vec{e_3}∧\vec{e_4}}_{0}+a_3b_2\underbrace{(-\vec{e_3}∧\vec{e_1}∧\vec{e_3}∧\vec{e_4})}_{0}+a_3b_3\underbrace{\vec{e_3}∧\vec{e_1}∧\vec{e_2}∧\vec{e_4}}_{\vec{e_1}∧\vec{e_2}∧\vec{e_3}∧\vec{e_4}}+a_3b_4\underbrace{(-\vec{e_3}∧\vec{e_1}∧\vec{e_2}∧\vec{e_3})}_{0} \\
+&\quad +a_4b_1\underbrace{\vec{e_4}∧\vec{e_2}∧\vec{e_3}∧\vec{e_4}}_{0}+a_4b_2\underbrace{(-\vec{e_4}∧\vec{e_1}∧\vec{e_3}∧\vec{e_4})}_{0}+a_4b_3\underbrace{\vec{e_4}∧\vec{e_1}∧\vec{e_2}∧\vec{e_4}}_{0}+a_4b_4\underbrace{(-\vec{e_4}∧\vec{e_1}∧\vec{e_2}∧\vec{e_3})}_{\vec{e_1}∧\vec{e_2}∧\vec{e_3}∧\vec{e_4}} \\
+&=(a_1b_1+a_2b_2+a_3b_3+a_4b_4)\vec{e_1}∧\vec{e_2}∧\vec{e_3}∧\vec{e_4} \\
+&=\star(a_1b_1+a_2b_2+a_3b_3+a_4b_4) \\
+&=\star(\vec{a}\cdot\vec{b})
+\end{align}
