@@ -194,7 +194,7 @@ module Term =
             list)
         |> List.concat
 
-    let showProd3 f h (d:(term * term list) list) =
+    let showProd3 f nl (d:(term * term list) list) =
         if d.Length = 0 then printfn @"&=0 \\" else
         d |> List.iteri (fun i d1 ->
             let s = str3 f d1
@@ -202,13 +202,13 @@ module Term =
             if i = 0 then
                 printf @"&=%s" s
             else
-                if h i then
+                if nl i then
                     printfn @" \\"
                     printf @"&\quad "
                 printf "%s" (addSign s))
         printfn @" \\"
 
-    let showProd title op f g sort1 sort2 h a b =
+    let showProd title op f g sort1 sort2 nl a b =
         prologue title
         let sa, sb = strs f a |> bracket, strs f b |> bracket
         if op = "" && sa = sb then
@@ -219,5 +219,5 @@ module Term =
         showProd1 op f al bl
         let c = showProd2 f g al bl
         let d = c |> simplify |> sort sort1 sort2
-        if d.Length < c.Length then showProd3 f h d
+        if d.Length < c.Length then showProd3 f nl d
         epilogue()
