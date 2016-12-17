@@ -110,6 +110,13 @@ module Term =
         let s = sea + sal + see
         if s = "" then "1" else s
 
+    let allNeg (ts:term list) =
+        let minus = ts |> Seq.filter (fun t -> t.N < 0)
+        ts.Length = Seq.length minus
+
+    let neg (ts:term list) =
+        ts |> List.map (fun t -> -1 * t)
+
     let prodA (t1:term) (t2:term) =
         term(t1.N * t2.N, List.append t1.A t2.A, [])
 
@@ -133,9 +140,16 @@ module Term =
     let simplify (terms:term seq) =
         terms
         |> Seq.groupBy (fun t -> t.E)
-        |> Seq.map (fun (e, ts) -> term(1, [], e), simplifyA ts)
+        |> Seq.map (fun (e, al) ->
+            let e, al = fromE e, al |> Seq.map dupNA |> simplifyA
+            if allNeg al then -1 * e, neg al else e, al)
         |> Seq.filter (fun (_, ts) -> not <| ts.IsEmpty)
         |> Seq.toList
+
+    let sort sort1 sort2 (eals:(term * term list) list) =
+        eals
+        |> List.sortBy (fun (e, _) -> sort1 e.E)
+        |> List.map (fun (e, al) -> e, List.sortBy sort2 al)
 
     let byIndexSign (t:term) =
         t.A
@@ -150,13 +164,6 @@ module Term =
         es
         |> Seq.map (sprintf @"\vec{e_%d}")
         |> String.concat op
-
-    let allNeg (ts:term list) =
-        let minus = ts |> Seq.filter (fun t -> t.N < 0)
-        ts.Length = Seq.length minus
-
-    let neg (ts:term list) =
-        ts |> List.map (fun t -> -1 * t)
 
     let showProd1 op f al bl =
         let sa = strs2 f al |> bracket
@@ -187,16 +194,10 @@ module Term =
             list)
         |> List.concat
 
-    let showProd3 f sort1 c =
-        c
-        |> simplify
-        |> List.sortBy (fun (e, _) -> e.E |> sort1)
-
-    let showProd4 f sort2 h (d:(term * term list) list) =
+    let showProd3 f h (d:(term * term list) list) =
         if d.Length = 0 then printfn @"&=0 \\" else
-        d |> List.iteri (fun i (e, al) ->
-            let e, al = if allNeg al then -1 * e, neg al else e, al
-            let s = str3 f (e, al |> Seq.map dupNA |> Seq.sortBy sort2)
+        d |> List.iteri (fun i d1 ->
+            let s = str3 f d1
             let s = if d.Length = 1 then unbracket s else s
             if i = 0 then
                 printf @"&=%s" s
@@ -217,7 +218,6 @@ module Term =
         let al, bl = splits a, splits b
         showProd1 op f al bl
         let c = showProd2 f g al bl
-        let d = showProd3 f sort1 c
-        if d.Length < c.Length then
-            showProd4 f sort2 h d
+        let d = c |> simplify |> sort sort1 sort2
+        if d.Length < c.Length then showProd3 f h d
         epilogue()

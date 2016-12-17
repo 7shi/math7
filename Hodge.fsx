@@ -74,8 +74,6 @@ tests.Add <| fun f ->
     f "simplify" @"\vec{e_3}∧\vec{e_2}∧\vec{e_3}∧\vec{e_1} \to 0"
     <| sprintf @"%s \to %s" (str t6) (str (simplify t6))
 
-let inv (t:term) = term(t.N, t.A, List.rev t.E)
-
 let hodge n (t:term) =
     let e = List.append (List.rev t.E) [1..n]
     let t = term(t.N, t.A, e) |> sort
@@ -100,14 +98,15 @@ let showProd title n =
     printfn @"&=%s∧%s \\" sa (Term.strs2 vec bl |> Term.bracket)
     Term.showProd1 "∧" vec al bl
     let d = Term.showProd2 vec (Term.fromE >> simplify) al bl
-         |> Term.showProd3 vec id
-    let pt = Term.showProd4 vec Term.byIndexSign ((=) 1)
-    pt d
+         |> Term.simplify
+         |> Term.sort id Term.byIndexSign
+    let sp4 = Term.showProd3 vec ((=) 1)
+    sp4 d
     d
     |> List.map (fun (e, al) ->
         let h = hodge n e
         term(h.N, "\star"::h.A, h.E), al)
-    |> pt
+    |> sp4
     printfn @"&=\star(\vec{a}\cdot\vec{b})"
     Term.epilogue()
 
