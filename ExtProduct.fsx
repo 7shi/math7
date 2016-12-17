@@ -1,7 +1,7 @@
 #load "Math7.fsx"
 open Math7
 
-Term.prodTerms "## 代数式" ""
+Term.showProd "## 代数式" ""
     (fun es -> es |> Seq.map (fun e -> [""; "x"; "y"; "z"].[e]) |> Term.strPower)
     (fun es ->
         match es with
@@ -15,14 +15,14 @@ Term.prodTerms "## 代数式" ""
     [for i in [1..3] -> term(1, [sprintf "a_%d" i], [i])]
     [for i in [1..3] -> term(1, [sprintf "b_%d" i], [i])]
 
-Term.prodTerms "## テンソル積" @"\otimes "
+Term.showProd "## テンソル積" @"\otimes "
     (Term.vec @"\otimes ")
     (fun es -> term(1, [], es))
     id Term.byIndexSign (fun _ -> false)
     [for i in [1..3] -> term(1, [sprintf "a_%d" i], [i])]
     [for i in [1..3] -> term(1, [sprintf "b_%d" i], [i])]
 
-Term.prodTerms "## ウェッジ積" "∧"
+Term.showProd "## ウェッジ積" "∧"
     (Term.vec "∧")
     (fun es ->
         match es with
@@ -33,7 +33,7 @@ Term.prodTerms "## ウェッジ積" "∧"
     [for i in [1..3] -> term(1, [sprintf "a_%d" i], [i])]
     [for i in [1..3] -> term(1, [sprintf "b_%d" i], [i])]
 
-Term.prodTerms "## ベクトル積" "×"
+Term.showProd "## ベクトル積" "×"
     (Term.vec "×")
     (fun es ->
         match es with
@@ -45,7 +45,7 @@ Term.prodTerms "## ベクトル積" "×"
     [for i in [1..3] -> term(1, [sprintf "a_%d" i], [i])]
     [for i in [1..3] -> term(1, [sprintf "b_%d" i], [i])]
 
-Term.prodTerms "## 幾何学積" ""
+Term.showProd "## 幾何学積" ""
     (Term.vec "")
     (fun es ->
         match es with
@@ -56,7 +56,7 @@ Term.prodTerms "## 幾何学積" ""
     [for i in [1..3] -> term(1, [sprintf "a_%d" i], [i])]
     [for i in [1..3] -> term(1, [sprintf "b_%d" i], [i])]
 
-Term.prodTerms "## 四元数" ""
+Term.showProd "## 四元数" ""
     (fun es -> es |> Seq.map (fun e -> [""; "i"; "j"; "k"].[e]) |> Term.strPower)
     (fun es ->
         match es with

@@ -2,7 +2,7 @@
 open Math7
 
 let show title =
-    Term.prodTerms title "" Octonion.str Octonion.prod id Term.byIndexSign
+    Term.showProd title "" Octonion.str Octonion.prod id Term.byIndexSign
 
 let a = [for i in [1..7] -> term(1, [sprintf "a_%d" i], [i])]
 let b = [for i in [1..7] -> term(1, [sprintf "b_%d" i], [i])]
