@@ -90,11 +90,11 @@ tests.Add <| fun f ->
 
 let showProd title n =
     Term.prologue title
-    printfn @"&\vec{a}∧(\star\vec{b}) \\"
+    printfn @"&\vec{a}∧\star\vec{b} \\"
     let a = [for i in [1..n] -> term(1, [sprintf "a_%d" i], [i])]
     let b = [for i in [1..n] -> term(1, [sprintf "b_%d" i], [i])]
     let sa, sb = strs a |> Term.bracket, strs b |> Term.bracket
-    printfn @"&=%s∧%s \\" sa (Term.bracket ("\star" + sb))
+    printfn @"&=%s∧\star%s \\" sa sb
     let al = Term.splits a
     let bl = Term.splits b |> List.map (fun (a, e) -> (a, hodge n e))
     printfn @"&=%s∧%s \\" sa (Term.strs2 vec bl |> Term.bracket)
@@ -102,8 +102,12 @@ let showProd title n =
     let d = Term.showProd2 vec (Term.fromE >> simplify) al bl
          |> Term.showProd3 vec id
     let pt = Term.showProd4 vec Term.byIndexSign ((=) 1)
-    pt "" d
-    d |> List.map (fun (e, al) -> hodge n e, al) |> pt "\star"
+    pt d
+    d
+    |> List.map (fun (e, al) ->
+        let h = hodge n e
+        term(h.N, "\star"::h.A, h.E), al)
+    |> pt
     printfn @"&=\star(\vec{a}\cdot\vec{b})"
     Term.epilogue()
 

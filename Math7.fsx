@@ -40,6 +40,7 @@ module Term =
     let dupE  (t:term) = fromE t.E
     let addSign (v:string) =
         if v.StartsWith "-" then v else "+" + v
+    let fix = function "" -> "1" | "-" -> "-1" | s -> s
 
     let split  t  = dupNA t, dupE t
     let splits ts = ts |> List.map split
@@ -64,11 +65,10 @@ module Term =
         | -1 ->      "-" + strPower t.A
         |  n -> string n + strPower t.A
 
-    let str f t =
-        strA t + f t.E
-        |> function "" -> "1" | "-" -> "-1" | s -> s
+    let str f t = strA t + f t.E |> fix
 
     let strs f ts =
+        if Seq.length ts = 0 then "0" else
         ts
         |> Seq.mapi (fun i t ->
             let t = str f t
@@ -119,19 +119,26 @@ module Term =
         |> Seq.filter (fun (_, ts) -> not <| ts.IsEmpty)
         |> Seq.toList
 
-    let byIndexSign (n, a:string list) =
-        a
+    let byIndexSign (t:term) =
+        t.A
         |> Seq.map (fun s ->
             let i = s.IndexOf '_'
             if i < 0 then s else s.[i + 1 ..])
         |> Seq.sort
         |> String.concat ""
-        |> (fun s -> s + if n = 1 then "+" else "-")
+        |> (fun s -> s + if t.N < 0 then "-" else "+")
 
     let vec op es =
         es
         |> Seq.map (sprintf @"\vec{e_%d}")
         |> String.concat op
+
+    let allNeg (ts:term list) =
+        let minus = ts |> Seq.filter (fun t -> t.N < 0)
+        ts.Length = Seq.length minus
+
+    let neg (ts:term list) =
+        ts |> List.map (fun t -> -1 * t)
 
     let showProd1 op f al bl =
         let sa = strs2 f al |> bracket
@@ -167,34 +174,26 @@ module Term =
         |> simplify
         |> List.sortBy (fun (e, _) -> e.E |> sort1)
 
-    let showProd4 f sort2 h pfx (d:(term * term list) list) =
+    let showProd4 f sort2 h (d:(term * term list) list) =
+        if d.Length = 0 then printfn @"&=0 \\" else
         d |> List.iteri (fun i (e, al) ->
-            let sign, slist =
-                let slist =
-                    al
-                    |> List.sortBy (fun t -> sort2 (t.N, t.A))
-                    |> List.map (strA >> addSign)
-                let m =
-                    slist
-                    |> Seq.filter (fun (x:string) -> x.StartsWith "-")
-                    |> Seq.length
-                if m < List.length slist then "", slist else
-                "-", slist |> List.map (fun (x:string) -> "+" + x.[1..])
-            let se = if e.E.IsEmpty then "" else str f e
-            let sal =
-                let sal =
-                    slist
-                    |> String.concat ""
-                    |> (fun x -> if x.StartsWith "+" then x.[1..] else x)
-                if pfx + sign + se = "" && d.Length = 1 then sal else
-                sign + if al.Length = 1 then sal else bracket sal
+            let e, al = if allNeg al then -1 * e, neg al else e, al
+            let sea = strA e
+            let sal = al |> Seq.map dupNA |> Seq.sortBy sort2 |> strs f
+            let see = f e.E
+            let s =
+                if sea = "" && see = "" && d.Length = 1 then
+                    if sal = "" then "1" else sal
+                else
+                    let sal = if al.Length = 1 then sal else bracket sal
+                    sea + sal + see
             if i = 0 then
-                printf @"&=%s%s%s" pfx sal se
+                printf @"&=%s" s
             else
                 if h i then
                     printfn @" \\"
                     printf @"&\quad "
-                printf "%s%s" (addSign sal) se)
+                printf "%s" (addSign s))
         printfn @" \\"
 
     let showProd title op f g sort1 sort2 h a b =
@@ -209,5 +208,5 @@ module Term =
         let c = showProd2 f g al bl
         let d = showProd3 f sort1 c
         if d.Length < c.Length then
-            showProd4 f sort2 h "" d
+            showProd4 f sort2 h d
         epilogue()
