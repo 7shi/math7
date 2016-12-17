@@ -10,9 +10,9 @@ let strs = Term.strs vec
 
 tests.Add <| fun f ->
     let e = [3; 1; 2]
-    let t = Term.fromE e
     f "vec" @"\vec{e_3}∧\vec{e_1}∧\vec{e_2}"
     <| vec e
+    let t = Term.fromE e
     f "str" @"\vec{e_3}∧\vec{e_1}∧\vec{e_2}"
     <| str t
     f "strs" @"\vec{e_3}∧\vec{e_1}∧\vec{e_2}+\vec{e_3}∧\vec{e_1}∧\vec{e_2}"
@@ -34,12 +34,14 @@ let bsortE xs =
     bsort 0 xs
 
 tests.Add <| fun f ->
-    let e1, e2 = [3; 2; 1], [3; 2; 3; 1]
-    let (n1, e1s), (n2, e2s) = bsortE e1, bsortE e2
+    let e = [3; 2; 1]
+    let n, es = bsortE e
     f "bsortE" @"\vec{e_3}∧\vec{e_2}∧\vec{e_1} \to 3, \vec{e_1}∧\vec{e_2}∧\vec{e_3}"
-    <| sprintf @"%s \to %d, %s" (vec e1) n1 (vec e1s)
+    <| sprintf @"%s \to %d, %s" (vec e) n (vec es)
+    let e = [3; 2; 3; 1]
+    let n, es = bsortE e
     f "bsortE" @"\vec{e_3}∧\vec{e_2}∧\vec{e_3}∧\vec{e_1} \to 4, \vec{e_1}∧\vec{e_2}∧\vec{e_3}∧\vec{e_3}"
-    <| sprintf @"%s \to %d, %s" (vec e2) n2 (vec e2s)
+    <| sprintf @"%s \to %d, %s" (vec e) n (vec es)
 
 let sort (t:term) =
     let n, e = bsortE t.E
@@ -47,11 +49,12 @@ let sort (t:term) =
     term(s * t.N, t.A, e)
 
 tests.Add <| fun f ->
-    let t1, t2 = Term.fromE [3; 2; 1], Term.fromE [3; 2; 3; 1]
+    let t = Term.fromE [3; 2; 1]
     f "sort" @"\vec{e_3}∧\vec{e_2}∧\vec{e_1} \to -\vec{e_1}∧\vec{e_2}∧\vec{e_3}"
-    <| sprintf @"%s \to %s" (str t1) (str (sort t1))
+    <| sprintf @"%s \to %s" (str t) (str (sort t))
+    let t = Term.fromE [3; 2; 3; 1]
     f "sort" @"\vec{e_3}∧\vec{e_2}∧\vec{e_3}∧\vec{e_1} \to \vec{e_1}∧\vec{e_2}∧\vec{e_3}∧\vec{e_3}"
-    <| sprintf @"%s \to %s" (str t2) (str (sort t2))
+    <| sprintf @"%s \to %s" (str t) (str (sort t))
 
 let rec rmPairE = function
 | [] -> []
@@ -69,11 +72,12 @@ let simplify (t:term) =
     if t.E.Length = (rmPairE t.E).Length then t else term.Zero
 
 tests.Add <| fun f ->
-    let t5, t6 = Term.fromE [3; 2; 1], Term.fromE [3; 2; 3; 1]
+    let t = Term.fromE [3; 2; 1]
     f "simplify" @"\vec{e_3}∧\vec{e_2}∧\vec{e_1} \to -\vec{e_1}∧\vec{e_2}∧\vec{e_3}"
-    <| sprintf @"%s \to %s" (str t5) (str (simplify t5))
+    <| sprintf @"%s \to %s" (str t) (str (simplify t))
+    let t = Term.fromE [3; 2; 3; 1]
     f "simplify" @"\vec{e_3}∧\vec{e_2}∧\vec{e_3}∧\vec{e_1} \to 0"
-    <| sprintf @"%s \to %s" (str t6) (str (simplify t6))
+    <| sprintf @"%s \to %s" (str t) (str (simplify t))
 
 let hodge n (t:term) =
     let e = List.append (List.rev t.E) [1..n]
@@ -81,11 +85,12 @@ let hodge n (t:term) =
     term(t.N, t.A, rmPairE t.E)
 
 tests.Add <| fun f ->
-    let t7, t8 = Term.fromE [1], Term.fromE [2]
+    let t = Term.fromE [1]
     f "hodge" @"2,\vec{e_1} \to \vec{e_2}"
-    <| sprintf @"2,%s \to %s" (str t7) (str (hodge 2 t7))
+    <| sprintf @"2,%s \to %s" (str t) (str (hodge 2 t))
+    let t = Term.fromE [2]
     f "hodge" @"2,\vec{e_2} \to -\vec{e_1}"
-    <| sprintf @"2,%s \to %s" (str t8) (str (hodge 2 t8))
+    <| sprintf @"2,%s \to %s" (str t) (str (hodge 2 t))
 
 let showProd title n =
     Term.prologue title
