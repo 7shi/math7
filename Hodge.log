@@ -1,11 +1,30 @@
 
+## Hodge tests
+
+```math
+\begin{align}
+vec\ [OK]&\ \vec{e_3}∧\vec{e_1}∧\vec{e_2} \\
+str\ [OK]&\ \vec{e_3}∧\vec{e_1}∧\vec{e_2} \\
+strs\ [OK]&\ \vec{e_3}∧\vec{e_1}∧\vec{e_2}+\vec{e_3}∧\vec{e_1}∧\vec{e_2} \\
+bsortE\ [OK]&\ \vec{e_3}∧\vec{e_2}∧\vec{e_1} \to 3, \vec{e_1}∧\vec{e_2}∧\vec{e_3} \\
+bsortE\ [OK]&\ \vec{e_3}∧\vec{e_2}∧\vec{e_3}∧\vec{e_1} \to 4, \vec{e_1}∧\vec{e_2}∧\vec{e_3}∧\vec{e_3} \\
+sort\ [OK]&\ \vec{e_3}∧\vec{e_2}∧\vec{e_1} \to -\vec{e_1}∧\vec{e_2}∧\vec{e_3} \\
+sort\ [OK]&\ \vec{e_3}∧\vec{e_2}∧\vec{e_3}∧\vec{e_1} \to \vec{e_1}∧\vec{e_2}∧\vec{e_3}∧\vec{e_3} \\
+rmPairE\ [OK]&\ \vec{e_1}\vec{e_1}\vec{e_1}\vec{e_2}\vec{e_3}\vec{e_3}\vec{e_4} \to \vec{e_1}\vec{e_2}\vec{e_4} \\
+simplify\ [OK]&\ \vec{e_3}∧\vec{e_2}∧\vec{e_1} \to -\vec{e_1}∧\vec{e_2}∧\vec{e_3} \\
+simplify\ [OK]&\ \vec{e_3}∧\vec{e_2}∧\vec{e_3}∧\vec{e_1} \to 0 \\
+hodge\ [OK]&\ 2,\vec{e_1} \to \vec{e_2} \\
+hodge\ [OK]&\ 2,\vec{e_2} \to -\vec{e_1} \\
+\end{align}
+```
+
 ## 2次元
 
 ```math
 \begin{align}
 &\vec{a}∧(\star\vec{b}) \\
-&=(a_1\vec{e_1}+a_2\vec{e_2})∧\star(b_1\vec{e_1}+b_2\vec{e_2}) \\
-&=(a_1\vec{e_1}+a_2\vec{e_2})∧\star\{b_1\vec{e_2}+b_2(-\vec{e_1})\} \\
+&=(a_1\vec{e_1}+a_2\vec{e_2})∧\{\star(b_1\vec{e_1}+b_2\vec{e_2})\} \\
+&=(a_1\vec{e_1}+a_2\vec{e_2})∧\{b_1\vec{e_2}+b_2(-\vec{e_1})\} \\
 &=a_1\vec{e_1}∧\{b_1\vec{e_2}+b_2(-\vec{e_1})\} \\
 &\quad +a_2\vec{e_2}∧\{b_1\vec{e_2}+b_2(-\vec{e_1})\} \\
 &=a_1b_1\vec{e_1}∧\vec{e_2}+a_1b_2\underbrace{(-\vec{e_1}∧\vec{e_1})}_{0} \\
@@ -21,8 +40,8 @@
 ```math
 \begin{align}
 &\vec{a}∧(\star\vec{b}) \\
-&=(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3})∧\star(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}) \\
-&=(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3})∧\star\{b_1\vec{e_2}∧\vec{e_3}+b_2(-\vec{e_1}∧\vec{e_3})+b_3\vec{e_1}∧\vec{e_2}\} \\
+&=(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3})∧\{\star(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3})\} \\
+&=(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3})∧\{b_1\vec{e_2}∧\vec{e_3}+b_2(-\vec{e_1}∧\vec{e_3})+b_3\vec{e_1}∧\vec{e_2}\} \\
 &=a_1\vec{e_1}∧\{b_1\vec{e_2}∧\vec{e_3}+b_2(-\vec{e_1}∧\vec{e_3})+b_3\vec{e_1}∧\vec{e_2}\} \\
 &\quad +a_2\vec{e_2}∧\{b_1\vec{e_2}∧\vec{e_3}+b_2(-\vec{e_1}∧\vec{e_3})+b_3\vec{e_1}∧\vec{e_2}\} \\
 &\quad +a_3\vec{e_3}∧\{b_1\vec{e_2}∧\vec{e_3}+b_2(-\vec{e_1}∧\vec{e_3})+b_3\vec{e_1}∧\vec{e_2}\} \\
@@ -40,8 +59,8 @@
 ```math
 \begin{align}
 &\vec{a}∧(\star\vec{b}) \\
-&=(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3}+a_4\vec{e_4})∧\star(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}+b_4\vec{e_4}) \\
-&=(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3}+a_4\vec{e_4})∧\star\{b_1\vec{e_2}∧\vec{e_3}∧\vec{e_4}+b_2(-\vec{e_1}∧\vec{e_3}∧\vec{e_4})+b_3\vec{e_1}∧\vec{e_2}∧\vec{e_4}+b_4(-\vec{e_1}∧\vec{e_2}∧\vec{e_3})\} \\
+&=(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3}+a_4\vec{e_4})∧\{\star(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}+b_4\vec{e_4})\} \\
+&=(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3}+a_4\vec{e_4})∧\{b_1\vec{e_2}∧\vec{e_3}∧\vec{e_4}+b_2(-\vec{e_1}∧\vec{e_3}∧\vec{e_4})+b_3\vec{e_1}∧\vec{e_2}∧\vec{e_4}+b_4(-\vec{e_1}∧\vec{e_2}∧\vec{e_3})\} \\
 &=a_1\vec{e_1}∧\{b_1\vec{e_2}∧\vec{e_3}∧\vec{e_4}+b_2(-\vec{e_1}∧\vec{e_3}∧\vec{e_4})+b_3\vec{e_1}∧\vec{e_2}∧\vec{e_4}+b_4(-\vec{e_1}∧\vec{e_2}∧\vec{e_3})\} \\
 &\quad +a_2\vec{e_2}∧\{b_1\vec{e_2}∧\vec{e_3}∧\vec{e_4}+b_2(-\vec{e_1}∧\vec{e_3}∧\vec{e_4})+b_3\vec{e_1}∧\vec{e_2}∧\vec{e_4}+b_4(-\vec{e_1}∧\vec{e_2}∧\vec{e_3})\} \\
 &\quad +a_3\vec{e_3}∧\{b_1\vec{e_2}∧\vec{e_3}∧\vec{e_4}+b_2(-\vec{e_1}∧\vec{e_3}∧\vec{e_4})+b_3\vec{e_1}∧\vec{e_2}∧\vec{e_4}+b_4(-\vec{e_1}∧\vec{e_2}∧\vec{e_3})\} \\

@@ -11,9 +11,33 @@ type term(n:int, a:string list, e:int list) =
         term(n * t.N, t.A, t.E)
     override x.ToString() = "term" + (n, a, e).ToString()
 
+type testf = (string -> string -> string -> unit) -> unit
+
 module Term =
-    let dupNA (t:term) = term(t.N, t.A, [] )
-    let dupE  (t:term) = term(1  , [] , t.E)
+    let prologue title =
+        printfn @""
+        printfn "%s" title
+        printfn @""
+        printfn "```math"
+        printfn @"\begin{align}"
+    let epilogue() =
+        printfn @"\end{align}"
+        printfn "```"
+
+    let testPrint tag expected result =
+        if expected = result then
+            printfn @"%s\ [OK]&\ %s \\" tag result
+        else
+            printfn @"%s\ [NG]&\ %s \\" tag result
+            printfn @"expected:&\ %s \\" expected
+    let test title tests =
+        prologue title
+        for t in tests do t testPrint
+        epilogue()
+
+    let fromE  e       = term(1  , [] , e )
+    let dupNA (t:term) = term(t.N, t.A, [])
+    let dupE  (t:term) = fromE t.E
     let addSign (v:string) =
         if v.StartsWith "-" then v else "+" + v
 
@@ -109,36 +133,41 @@ module Term =
         |> Seq.map (sprintf @"\vec{e_%d}")
         |> String.concat op
 
-    let prodTerms1 op f (g:int list -> term) sort1 al bl =
+    let showProd1 op f al bl =
         let sa = strs2 f al |> bracket
         let sb = strs2 f bl |> bracket
-        al |> Seq.iteri (fun i a ->
+        al |> List.iteri (fun i a ->
             let s = str2 f a
             if i = 0 then
                 printfn @"&=%s%s%s \\" s op sb
             else
                 printfn @"&\quad %s%s%s \\" (addSign s) op sb)
-        let c =
-            al |> List.mapi (fun i (aa, ae) ->
-                let list = bl |> List.mapi (fun j (ba, be) ->
-                    let pa = prod aa ba
-                    let pe = prod ae be
-                    let ge = pe.N * g pe.E
-                    let sp =
-                        let se = strE f pe
-                        if se = strE f ge then str2 f (pa, pe) else
-                        sprintf @"%s\underbrace{%s}_{%s}" (strA pa) se (str f ge)
-                    match i, j with
-                    | 0, 0 -> printf @"&=%s" sp
-                    | _, 0 -> printf @"&\quad %s" (addSign sp)
-                    | _, _ -> printf @"%s" (addSign sp)
-                    prod pa ge)
-                printfn @" \\"
-                list)
-            |> List.concat
-        c, c |> simplify |> List.sortBy (fun (e, _) -> e.E |> sort1)
 
-    let prodTerms2 f sort2 h pfx (d:(term * term list) list) =
+    let showProd2 f (g:int list -> term) al bl =
+        al |> List.mapi (fun i (aa, ae) ->
+            let list = bl |> List.mapi (fun j (ba, be) ->
+                let pa = prod aa ba
+                let pe = prod ae be
+                let ge = pe.N * g pe.E
+                let sp =
+                    let se = strE f pe
+                    if se = strE f ge then str2 f (pa, pe) else
+                    sprintf @"%s\underbrace{%s}_{%s}" (strA pa) se (str f ge)
+                match i, j with
+                | 0, 0 -> printf @"&=%s" sp
+                | _, 0 -> printf @"&\quad %s" (addSign sp)
+                | _, _ -> printf @"%s" (addSign sp)
+                prod pa ge)
+            printfn @" \\"
+            list)
+        |> List.concat
+
+    let showProd3 f sort1 c =
+        c
+        |> simplify
+        |> List.sortBy (fun (e, _) -> e.E |> sort1)
+
+    let showProd4 f sort2 h pfx (d:(term * term list) list) =
         d |> List.iteri (fun i (e, al) ->
             let sign, slist =
                 let slist =
@@ -168,19 +197,17 @@ module Term =
                 printf "%s%s" (addSign sal) se)
         printfn @" \\"
 
-    let prodTerms title op f g sort1 sort2 h a b =
-        printfn @""
-        printfn "%s" title
-        printfn @""
-        printfn "```math"
-        printfn @"\begin{align}"
+    let showProd title op f g sort1 sort2 h a b =
+        prologue title
         let sa, sb = strs f a |> bracket, strs f b |> bracket
         if op = "" && sa = sb then
             printfn @"&%s^2 \\" sa
         else
             printfn @"&%s%s%s \\" sa op sb
-        let c, d = prodTerms1 op f g sort1 (splits a) (splits b)
+        let al, bl = splits a, splits b
+        showProd1 op f al bl
+        let c = showProd2 f g al bl
+        let d = showProd3 f sort1 c
         if d.Length < c.Length then
-            prodTerms2 f sort2 h "" d
-        printfn @"\end{align}"
-        printfn "```"
+            showProd4 f sort2 h "" d
+        epilogue()
