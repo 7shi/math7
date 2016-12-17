@@ -50,6 +50,16 @@ module Term =
         elif s.Contains  "(" then "\{" + s + "\}"
         else                       "(" + s +  ")"
 
+    let startEnd (str:string) s e =
+        str.StartsWith s && str.EndsWith e
+
+    let unbracket (s:string) =
+        if startEnd s "(" ")" || startEnd s "[" "]" then
+            s.[1 .. s.Length - 2]
+        elif startEnd s "\{" "\}" then
+            s.[2 .. s.Length - 3]
+        else s
+
     let strPower (ss:string seq) =
         ss
         |> Seq.groupBy id
@@ -91,6 +101,14 @@ module Term =
             let s = str2 f t
             if i = 0 then s else addSign s)
         |> String.concat ""
+
+    let str3 f (e, al) =
+        let sea = strA e
+        let sal = strs f al
+        let see = f e.E
+        let sal = if Seq.length al = 1 then sal else bracket sal
+        let s = sea + sal + see
+        if s = "" then "1" else s
 
     let prodA (t1:term) (t2:term) =
         term(t1.N * t2.N, List.append t1.A t2.A, [])
@@ -178,15 +196,8 @@ module Term =
         if d.Length = 0 then printfn @"&=0 \\" else
         d |> List.iteri (fun i (e, al) ->
             let e, al = if allNeg al then -1 * e, neg al else e, al
-            let sea = strA e
-            let sal = al |> Seq.map dupNA |> Seq.sortBy sort2 |> strs f
-            let see = f e.E
-            let s =
-                if sea = "" && see = "" && d.Length = 1 then
-                    if sal = "" then "1" else sal
-                else
-                    let sal = if al.Length = 1 then sal else bracket sal
-                    sea + sal + see
+            let s = str3 f (e, al |> Seq.map dupNA |> Seq.sortBy sort2)
+            let s = if d.Length = 1 then unbracket s else s
             if i = 0 then
                 printf @"&=%s" s
             else
