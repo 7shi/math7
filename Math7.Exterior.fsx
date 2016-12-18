@@ -2,21 +2,21 @@ module Math7.Exterior
 
 #load "Math7.fsx"
 
-let tests = System.Collections.Generic.List<testf>()
+let tests = testList()
 
 let op   = "∧"
 let vec  = Term.vec  op
 let str  = Term.str  vec
 let strs = Term.strs vec
 
-tests.Add <| fun f ->
+tests.Add <| fun _ ->
     let e = [3; 1; 2]
-    f "vec" @"\vec{e_3}∧\vec{e_1}∧\vec{e_2}"
+    Term.test "vec" @"\vec{e_3}∧\vec{e_1}∧\vec{e_2}"
     <| vec e
     let t = Term.fromE e
-    f "str" @"\vec{e_3}∧\vec{e_1}∧\vec{e_2}"
+    Term.test "str" @"\vec{e_3}∧\vec{e_1}∧\vec{e_2}"
     <| str t
-    f "strs" @"\vec{e_3}∧\vec{e_1}∧\vec{e_2}+\vec{e_3}∧\vec{e_1}∧\vec{e_2}"
+    Term.test "strs" @"\vec{e_3}∧\vec{e_1}∧\vec{e_2}+\vec{e_3}∧\vec{e_1}∧\vec{e_2}"
     <| strs [t; t]
 
 let bsortE xs =
@@ -34,14 +34,14 @@ let bsortE xs =
                       n, y::ys
     bsort 0 xs
 
-tests.Add <| fun f ->
+tests.Add <| fun _ ->
     let e = [3; 2; 1]
     let n, es = bsortE e
-    f "bsortE" @"\vec{e_3}∧\vec{e_2}∧\vec{e_1} \to 3, \vec{e_1}∧\vec{e_2}∧\vec{e_3}"
+    Term.test "bsortE" @"\vec{e_3}∧\vec{e_2}∧\vec{e_1} \to 3, \vec{e_1}∧\vec{e_2}∧\vec{e_3}"
     <| sprintf @"%s \to %d, %s" (vec e) n (vec es)
     let e = [3; 2; 3; 1]
     let n, es = bsortE e
-    f "bsortE" @"\vec{e_3}∧\vec{e_2}∧\vec{e_3}∧\vec{e_1} \to 4, \vec{e_1}∧\vec{e_2}∧\vec{e_3}∧\vec{e_3}"
+    Term.test "bsortE" @"\vec{e_3}∧\vec{e_2}∧\vec{e_3}∧\vec{e_1} \to 4, \vec{e_1}∧\vec{e_2}∧\vec{e_3}∧\vec{e_3}"
     <| sprintf @"%s \to %d, %s" (vec e) n (vec es)
 
 let sort (t:term) =
@@ -49,12 +49,12 @@ let sort (t:term) =
     let s = if n % 2 = 0 then 1 else -1
     term(s * t.N, t.A, e)
 
-tests.Add <| fun f ->
+tests.Add <| fun _ ->
     let t = Term.fromE [3; 2; 1]
-    f "sort" @"\vec{e_3}∧\vec{e_2}∧\vec{e_1} \to -\vec{e_1}∧\vec{e_2}∧\vec{e_3}"
+    Term.test "sort" @"\vec{e_3}∧\vec{e_2}∧\vec{e_1} \to -\vec{e_1}∧\vec{e_2}∧\vec{e_3}"
     <| sprintf @"%s \to %s" (str t) (str (sort t))
     let t = Term.fromE [3; 2; 3; 1]
-    f "sort" @"\vec{e_3}∧\vec{e_2}∧\vec{e_3}∧\vec{e_1} \to \vec{e_1}∧\vec{e_2}∧\vec{e_3}∧\vec{e_3}"
+    Term.test "sort" @"\vec{e_3}∧\vec{e_2}∧\vec{e_3}∧\vec{e_1} \to \vec{e_1}∧\vec{e_2}∧\vec{e_3}∧\vec{e_3}"
     <| sprintf @"%s \to %s" (str t) (str (sort t))
 
 let rec rmPairE = function
@@ -62,22 +62,22 @@ let rec rmPairE = function
 | x::y::xs when x = y -> rmPairE xs
 | x::xs -> x::rmPairE xs
 
-tests.Add <| fun f ->
+tests.Add <| fun _ ->
     let e = [1; 1; 1; 2; 3; 3; 4]
     let vecg = Term.vec ""  // 幾何学積
-    f "rmPairE" @"\vec{e_1}\vec{e_1}\vec{e_1}\vec{e_2}\vec{e_3}\vec{e_3}\vec{e_4} \to \vec{e_1}\vec{e_2}\vec{e_4}"
+    Term.test "rmPairE" @"\vec{e_1}\vec{e_1}\vec{e_1}\vec{e_2}\vec{e_3}\vec{e_3}\vec{e_4} \to \vec{e_1}\vec{e_2}\vec{e_4}"
     <| sprintf @"%s \to %s" (vecg e) (vecg (rmPairE e))
 
 let simplify (t:term) =
     let t = sort t
     if t.E.Length = (rmPairE t.E).Length then t else term.Zero
 
-tests.Add <| fun f ->
+tests.Add <| fun _ ->
     let t = Term.fromE [3; 2; 1]
-    f "simplify" @"\vec{e_3}∧\vec{e_2}∧\vec{e_1} \to -\vec{e_1}∧\vec{e_2}∧\vec{e_3}"
+    Term.test "simplify" @"\vec{e_3}∧\vec{e_2}∧\vec{e_1} \to -\vec{e_1}∧\vec{e_2}∧\vec{e_3}"
     <| sprintf @"%s \to %s" (str t) (str (simplify t))
     let t = Term.fromE [3; 2; 3; 1]
-    f "simplify" @"\vec{e_3}∧\vec{e_2}∧\vec{e_3}∧\vec{e_1} \to 0"
+    Term.test "simplify" @"\vec{e_3}∧\vec{e_2}∧\vec{e_3}∧\vec{e_1} \to 0"
     <| sprintf @"%s \to %s" (str t) (str (simplify t))
 
 let hodge n (t:term) =
@@ -85,12 +85,12 @@ let hodge n (t:term) =
     let t = term(t.N, t.A, e) |> sort
     term(t.N, t.A, rmPairE t.E)
 
-tests.Add <| fun f ->
+tests.Add <| fun _ ->
     let t = Term.fromE [1]
-    f "hodge" @"2,\vec{e_1} \to \vec{e_2}"
+    Term.test "hodge" @"2,\vec{e_1} \to \vec{e_2}"
     <| sprintf @"2,%s \to %s" (str t) (str (hodge 2 t))
     let t = Term.fromE [2]
-    f "hodge" @"2,\vec{e_2} \to -\vec{e_1}"
+    Term.test "hodge" @"2,\vec{e_2} \to -\vec{e_1}"
     <| sprintf @"2,%s \to %s" (str t) (str (hodge 2 t))
 
 let showProd title n =

@@ -11,7 +11,7 @@ type term(n:int, a:string list, e:int list) =
         term(n * t.N, t.A, t.E)
     override x.ToString() = "term" + (n, a, e).ToString()
 
-type testf = (string -> string -> string -> unit) -> unit
+type testList = System.Collections.Generic.List<unit -> unit>
 
 module Term =
     let prologue title =
@@ -24,15 +24,15 @@ module Term =
         printfn @"\end{align}"
         printfn "```"
 
-    let testPrint tag expected result =
+    let test tag expected result =
         if expected = result then
             printfn @"%s\ [OK]&\ %s \\" tag result
         else
             printfn @"%s\ [NG]&\ %s \\" tag result
             printfn @"expected:&\ %s \\" expected
-    let test title tests =
+    let tests title ts =
         prologue title
-        for t in tests do t testPrint
+        for t in ts do t()
         epilogue()
 
     let fromE  e       = term(1  , [] , e )
