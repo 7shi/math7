@@ -41,13 +41,15 @@ type octonion =
                       -c, z
 
 module Octonion =
+    let tests = testList()
+    
     let octs = [| E; I; J; K; H E; H I; H J; H K |]
     let oct x = octs.[x]
     let ijkh = function
     | 0 -> ""
     | x -> string (oct x)
 
-    let str es = es |> Seq.map ijkh |> Term.strPower
+    let str es = es |> Seq.map ijkh |> Seq.filter ((<>) "") |> Term.strPower
 
     let prod es =
         let n, e = es |> Seq.fold (fun (n, x) y ->
@@ -60,3 +62,18 @@ module Octonion =
 
     let showProd title =
         Term.showProd title "" str prod id Term.byIndexSign
+
+    tests.Add <| fun _ ->
+        let str2 = Term.str2 str
+        let a = Term.split (Term.fromE [E.N])
+        Term.test "Term.strProd" @"(1)^2 \to 1"
+        <| sprintf @"(%s)^2 \to %s" (str2 a) (Term.strProd "" str prod a a |> fst)
+        let a = Term.split (Term.fromE [I.N])
+        Term.test "Term.strProd" @"(i)^2 \to \underbrace{i^2}_{-1}"
+        <| sprintf @"(%s)^2 \to %s" (str2 a) (Term.strProd "" str prod a a |> fst)
+        let a = Term.split (term(1, ["a_0"], []))
+        Term.test "Term.strProd" @"(a_0)^2 \to a_0^2"
+        <| sprintf @"(%s)^2 \to %s" (str2 a) (Term.strProd "" str prod a a |> fst)
+        let a = Term.split (term(1, ["a_0"], [I.N]))
+        Term.test "Term.strProd" @"(a_0i)^2 \to a_0^2\underbrace{i^2}_{-1}"
+        <| sprintf @"(%s)^2 \to %s" (str2 a) (Term.strProd "" str prod a a |> fst)

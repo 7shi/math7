@@ -1,6 +1,8 @@
 #load "Math7.Octonion.fsx"
 open Math7
 
+Term.tests "## Octonion tests" Octonion.tests
+
 let a = [for i in [1..7] -> term(1, [sprintf "a_%d" i], [i])]
 let b = [for i in [1..7] -> term(1, [sprintf "b_%d" i], [i])]
 let aa = term(1, ["a_0"], [])::a

@@ -1,4 +1,15 @@
 
+## Octonion tests
+
+```math
+\begin{align}
+Term.strProd\ [OK]&\ (1)^2 \to 1 \\
+Term.strProd\ [OK]&\ (i)^2 \to \underbrace{i^2}_{-1} \\
+Term.strProd\ [OK]&\ (a_0)^2 \to a_0^2 \\
+Term.strProd\ [OK]&\ (a_0i)^2 \to a_0^2\underbrace{i^2}_{-1} \\
+\end{align}
+```
+
 ## 積（虚部）
 
 ```math
