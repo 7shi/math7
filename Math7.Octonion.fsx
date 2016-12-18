@@ -57,3 +57,6 @@ module Octonion =
 
     let conj = List.map <| fun (t:term) ->
         if t.E.IsEmpty then t else -1 * t
+
+    let showProd title =
+        Term.showProd title "" str prod id Term.byIndexSign

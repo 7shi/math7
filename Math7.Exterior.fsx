@@ -4,7 +4,8 @@ module Math7.Exterior
 
 let tests = System.Collections.Generic.List<testf>()
 
-let vec  = Term.vec "∧"
+let op   = "∧"
+let vec  = Term.vec  op
 let str  = Term.str  vec
 let strs = Term.strs vec
 
@@ -102,8 +103,8 @@ let showProd title n =
     let al = Term.splits a
     let bl = Term.splits b |> List.map (fun (a, e) -> (a, hodge n e))
     printfn @"&=%s∧%s \\" sa (Term.strs2 vec bl |> Term.bracket)
-    Term.showProd1 "∧" vec al bl
-    let d = Term.showProd2 vec (Term.fromE >> simplify) al bl
+    Term.showProd1 op vec al bl
+    let d = Term.showProd2 op vec (Term.fromE >> simplify) al bl
          |> Term.simplify
          |> Term.sort id Term.byIndexSign
     let sp4 = Term.showProd3 vec ((=) 1)

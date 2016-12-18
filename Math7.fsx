@@ -86,14 +86,10 @@ module Term =
         |> String.concat ""
 
     let strE f e =
-        let s = str f e
-        if e.N < 0 then bracket s else s
+        let s = strA e + f e.E
+        if e.N < 0 then fix s |> bracket else s
 
-    let str2 f (a, e) =
-        match strA a, strE f e with
-        | "", "1" -> "1"
-        | a , "1" -> a
-        | a , e   -> a + e
+    let str2 f (a, e) = strA a + strE f e |> fix
 
     let strs2 f ts =
         ts
@@ -107,8 +103,7 @@ module Term =
         let sal = strs f al
         let see = f e.E
         let sal = if Seq.length al = 1 then sal else bracket sal
-        let s = sea + sal + see
-        if s = "" then "1" else s
+        sea + sal + see |> fix
 
     let allNeg (ts:term list) =
         let minus = ts |> Seq.filter (fun t -> t.N < 0)
@@ -123,6 +118,19 @@ module Term =
     let prod (t1:term) (t2:term) =
         let a = prodA t1 t2
         term(a.N, a.A, List.append t1.E t2.E)
+
+    let strProd op f (g:int list -> term) (aa, ae) (ba, be) =
+        let pa = prod aa ba
+        let pe = prod ae be
+        let ge = pe.N * g pe.E
+        let sp =
+            let se1 =
+                if op = "" then strE f pe else
+                strE f ae + op + strE f be
+            let se2 = strA ge + f ge.E
+            if se1 = se2 then strA pa + se1 |> fix else
+            sprintf @"%s\underbrace{%s}_{%s}" (strA pa) se1 (fix se2)
+        sp, prod pa ge
 
     let simplifyA (terms:term seq) =
         seq {
@@ -175,21 +183,15 @@ module Term =
             else
                 printfn @"&\quad %s%s%s \\" (addSign s) op sb)
 
-    let showProd2 f (g:int list -> term) al bl =
-        al |> List.mapi (fun i (aa, ae) ->
-            let list = bl |> List.mapi (fun j (ba, be) ->
-                let pa = prod aa ba
-                let pe = prod ae be
-                let ge = pe.N * g pe.E
-                let sp =
-                    let se = strE f pe
-                    if se = strE f ge then str2 f (pa, pe) else
-                    sprintf @"%s\underbrace{%s}_{%s}" (strA pa) se (str f ge)
+    let showProd2 op f g al bl =
+        al |> List.mapi (fun i a ->
+            let list = bl |> List.mapi (fun j b ->
+                let sp, p = strProd op f g a b
                 match i, j with
                 | 0, 0 -> printf @"&=%s" sp
                 | _, 0 -> printf @"&\quad %s" (addSign sp)
                 | _, _ -> printf @"%s" (addSign sp)
-                prod pa ge)
+                p)
             printfn @" \\"
             list)
         |> List.concat
@@ -217,7 +219,7 @@ module Term =
             printfn @"&%s%s%s \\" sa op sb
         let al, bl = splits a, splits b
         showProd1 op f al bl
-        let c = showProd2 f g al bl
+        let c = showProd2 op f g al bl
         let d = c |> simplify |> sort sort1 sort2
         if d.Length < c.Length then showProd3 f nl d
         epilogue()
