@@ -1,4 +1,4 @@
-#load "Math7.fsx"
+#load "Math7.Term.fsx"
 open Math7
 
 Term.showProd "## 代数式" ""
