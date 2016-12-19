@@ -1,23 +1,4 @@
 
-## Hodge tests
-
-```math
-\begin{align}
-vec\ [OK]&\ \vec{e_3}∧\vec{e_1}∧\vec{e_2} \\
-str\ [OK]&\ \vec{e_3}∧\vec{e_1}∧\vec{e_2} \\
-strs\ [OK]&\ \vec{e_3}∧\vec{e_1}∧\vec{e_2}+\vec{e_3}∧\vec{e_1}∧\vec{e_2} \\
-bsortE\ [OK]&\ \vec{e_3}∧\vec{e_2}∧\vec{e_1} \to 3, \vec{e_1}∧\vec{e_2}∧\vec{e_3} \\
-bsortE\ [OK]&\ \vec{e_3}∧\vec{e_2}∧\vec{e_3}∧\vec{e_1} \to 4, \vec{e_1}∧\vec{e_2}∧\vec{e_3}∧\vec{e_3} \\
-sort\ [OK]&\ \vec{e_3}∧\vec{e_2}∧\vec{e_1} \to -\vec{e_1}∧\vec{e_2}∧\vec{e_3} \\
-sort\ [OK]&\ \vec{e_3}∧\vec{e_2}∧\vec{e_3}∧\vec{e_1} \to \vec{e_1}∧\vec{e_2}∧\vec{e_3}∧\vec{e_3} \\
-rmPairE\ [OK]&\ \vec{e_1}\vec{e_1}\vec{e_1}\vec{e_2}\vec{e_3}\vec{e_3}\vec{e_4} \to \vec{e_1}\vec{e_2}\vec{e_4} \\
-simplify\ [OK]&\ \vec{e_3}∧\vec{e_2}∧\vec{e_1} \to -\vec{e_1}∧\vec{e_2}∧\vec{e_3} \\
-simplify\ [OK]&\ \vec{e_3}∧\vec{e_2}∧\vec{e_3}∧\vec{e_1} \to 0 \\
-hodge\ [OK]&\ 2,\vec{e_1} \to \vec{e_2} \\
-hodge\ [OK]&\ 2,\vec{e_2} \to -\vec{e_1} \\
-\end{align}
-```
-
 ## 2次元
 
 ```math

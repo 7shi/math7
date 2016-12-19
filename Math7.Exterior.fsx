@@ -116,3 +116,5 @@ let showProd title n =
     |> sp4
     printfn @"&=\star(\vec{a}\cdot\vec{b})"
     Term.epilogue()
+
+if Term.isMain() then Term.tests "## Math7.Exterior tests" tests

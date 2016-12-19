@@ -14,6 +14,9 @@ type term(n:int, a:string list, e:int list) =
 type testList = System.Collections.Generic.List<unit -> unit>
 
 module Term =
+    let isMain() =
+        System.Diagnostics.StackTrace().GetFrame(1).GetMethod().Name = "main@"
+
     let prologue title =
         printfn @""
         printfn "%s" title

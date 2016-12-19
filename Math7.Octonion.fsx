@@ -65,15 +65,25 @@ module Octonion =
 
     tests.Add <| fun _ ->
         let str2 = Term.str2 str
-        let a = Term.split (Term.fromE [E.N])
+        let e = Term.fromE [E.N]
+        let a = Term.split e
         Term.test "Term.strProd" @"(1)^2 \to 1"
         <| sprintf @"(%s)^2 \to %s" (str2 a) (Term.strProd "" str prod a a |> fst)
-        let a = Term.split (Term.fromE [I.N])
+        let i = Term.fromE [I.N]
+        let a = Term.split i
         Term.test "Term.strProd" @"(i)^2 \to \underbrace{i^2}_{-1}"
         <| sprintf @"(%s)^2 \to %s" (str2 a) (Term.strProd "" str prod a a |> fst)
-        let a = Term.split (term(1, ["a_0"], []))
+        let a0 = term(1, ["a_0"], [])
+        let a = a0, e
         Term.test "Term.strProd" @"(a_0)^2 \to a_0^2"
         <| sprintf @"(%s)^2 \to %s" (str2 a) (Term.strProd "" str prod a a |> fst)
-        let a = Term.split (term(1, ["a_0"], [I.N]))
+        let a0i = Term.split (term(1, ["a_0"], [I.N]))
+        let a = a0, i
         Term.test "Term.strProd" @"(a_0i)^2 \to a_0^2\underbrace{i^2}_{-1}"
         <| sprintf @"(%s)^2 \to %s" (str2 a) (Term.strProd "" str prod a a |> fst)
+        Term.test "Term.str3" @"(a_0+a_0)"
+        <| sprintf @"%s" (Term.str3 str (e, [a0; a0]))
+        Term.test "Term.str3" @"(a_0+a_0)i"
+        <| sprintf @"%s" (Term.str3 str (i, [a0; a0]))
+
+    if Term.isMain() then Term.tests "## Math7.Octonion tests" tests
