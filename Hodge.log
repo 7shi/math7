@@ -1,4 +1,69 @@
 
+## 虚数の二乗
+
+```math
+\begin{align}
+i_{2}^2&=-1 \\
+i_{3}^2&=-1 \\
+i_{4}^2&=1 \\
+i_{5}^2&=1 \\
+i_{6}^2&=-1 \\
+i_{7}^2&=-1 \\
+i_{8}^2&=1 \\
+i_{9}^2&=1 \\
+i_{10}^2&=-1 \\
+\end{align}
+```
+
+## 2次元
+
+```math
+\begin{align}
+\star(1)&=\vec{e_1}∧\vec{e_2} \\
+\star(\vec{e_1})&=\vec{e_2} \\
+\star(\vec{e_2})&=-\vec{e_1} \\
+\star(\vec{e_1}∧\vec{e_2})&=1 \\
+\end{align}
+```
+
+## 3次元
+
+```math
+\begin{align}
+\star(1)&=\vec{e_1}∧\vec{e_2}∧\vec{e_3} \\
+\star(\vec{e_1})&=\vec{e_2}∧\vec{e_3} \\
+\star(\vec{e_2})&=-\vec{e_1}∧\vec{e_3} \\
+\star(\vec{e_3})&=\vec{e_1}∧\vec{e_2} \\
+\star(\vec{e_1}∧\vec{e_2})&=\vec{e_3} \\
+\star(\vec{e_1}∧\vec{e_3})&=-\vec{e_2} \\
+\star(\vec{e_2}∧\vec{e_3})&=\vec{e_1} \\
+\star(\vec{e_1}∧\vec{e_2}∧\vec{e_3})&=1 \\
+\end{align}
+```
+
+## 4次元
+
+```math
+\begin{align}
+\star(1)&=\vec{e_1}∧\vec{e_2}∧\vec{e_3}∧\vec{e_4} \\
+\star(\vec{e_1})&=\vec{e_2}∧\vec{e_3}∧\vec{e_4} \\
+\star(\vec{e_2})&=-\vec{e_1}∧\vec{e_3}∧\vec{e_4} \\
+\star(\vec{e_3})&=\vec{e_1}∧\vec{e_2}∧\vec{e_4} \\
+\star(\vec{e_4})&=-\vec{e_1}∧\vec{e_2}∧\vec{e_3} \\
+\star(\vec{e_1}∧\vec{e_2})&=\vec{e_3}∧\vec{e_4} \\
+\star(\vec{e_1}∧\vec{e_3})&=-\vec{e_2}∧\vec{e_4} \\
+\star(\vec{e_1}∧\vec{e_4})&=\vec{e_2}∧\vec{e_3} \\
+\star(\vec{e_2}∧\vec{e_3})&=\vec{e_1}∧\vec{e_4} \\
+\star(\vec{e_2}∧\vec{e_4})&=-\vec{e_1}∧\vec{e_3} \\
+\star(\vec{e_3}∧\vec{e_4})&=\vec{e_1}∧\vec{e_2} \\
+\star(\vec{e_1}∧\vec{e_2}∧\vec{e_3})&=\vec{e_4} \\
+\star(\vec{e_1}∧\vec{e_2}∧\vec{e_4})&=-\vec{e_3} \\
+\star(\vec{e_1}∧\vec{e_3}∧\vec{e_4})&=\vec{e_2} \\
+\star(\vec{e_2}∧\vec{e_3}∧\vec{e_4})&=-\vec{e_1} \\
+\star(\vec{e_1}∧\vec{e_2}∧\vec{e_3}∧\vec{e_4})&=1 \\
+\end{align}
+```
+
 ## 2次元
 
 ```math

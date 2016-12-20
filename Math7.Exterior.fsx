@@ -93,6 +93,14 @@ tests.Add <| fun _ ->
     Math7.test "hodge" @"2,\vec{e_2} \to -\vec{e_1}"
     <| sprintf @"2,%s \to %s" (str t) (str (hodge 2 t))
 
+let testHodge n =
+    Math7.prologue (sprintf "## %d次元" n)
+    for i = 0 to n do
+        for e in Math7.combination n i do
+            let t = Term.fromE e
+            printfn @"\star(%s)&=%s \\" (str t) (hodge n t |> str)
+    Math7.epilogue()
+
 let showProd title n =
     Math7.prologue title
     printfn @"&\vec{a}∧\star\vec{b} \\"
