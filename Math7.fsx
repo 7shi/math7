@@ -27,15 +27,18 @@ module Math7 =
         for t in ts do t()
         epilogue()
 
-    let combination n i =
-        let rec f j = function
+    let combination n k =
+        let rec f i = function
         | [] -> []
-        | s::ss ->
-            match f (j + 1) ss with
-            | [] -> if s + 1 > j + n - i then [] else [s + 1 .. s + 1 + i - j]
-            | ss -> s::ss
-        let rec g list =
-            match f 1 list with
-            | [] -> [list]
-            | next -> list :: g next
-        g [1..i]
+        | x::xs ->
+            match f (i + 1) xs with
+            | [] -> if x + k - i > n then [] else [x + 1 .. x + k - i]
+            | ys -> x::ys
+        let rec g cur =
+            match f 0 cur with
+            | [] -> [cur]
+            | next -> cur :: g next
+        g [1..k]
+
+    if isMain() then
+        printfn "combination 4 2 -> %A" (combination 4 2)
