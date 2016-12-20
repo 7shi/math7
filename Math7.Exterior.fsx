@@ -120,7 +120,7 @@ let showProd title n =
     d
     |> List.map (fun (e, al) ->
         let h = hodge n e
-        term(h.N, "\star"::h.A, h.E), al)
+        term(h.N, @"\star"::h.A, h.E), al)
     |> sp4
     printfn @"&=\star(\vec{a}\cdot\vec{b})"
     Math7.epilogue()
