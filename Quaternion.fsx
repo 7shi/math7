@@ -19,18 +19,13 @@ type Quaternion =
         | x, y -> let c, z = y * x  // ji = -ij
                   -c, z
 
-let tostr (a, z) =
+let str (a, z) =
     (if a = -1 then "-" else " ") + string z
 
-let elems = [I; J; K]
+let elems = [E; I; J; K]
 
-printf "  "
 for x in elems do
-    printf "|%s" (tostr (E * x))
-printfn ""
-printfn "%s" (String.replicate (2 * 4 + 3) "-")
-for x in elems do
-    printf "%s" (tostr (E * x))
-    for y in elems do
-        printf "|%s" (tostr (x * y))
-    printfn ""
+    elems
+    |> List.map ((*) x >> str)
+    |> String.concat " "
+    |> printfn "%s"
