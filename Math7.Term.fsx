@@ -123,6 +123,13 @@ module Term =
             sprintf @"%s\underbrace{%s}_{%s}" (strA pa) se1 (fix se2)
         sp, prod pa ge
 
+    let prods (g:int list -> term) al bl = [
+        for a in al do
+        for b in bl ->
+        let p = prod a b
+        let ge = g p.E
+        term(p.N * ge.N, p.A, ge.E)]
+
     let simplifyA (terms:term seq) =
         seq {
             for a, ts in terms |> Seq.groupBy (fun t -> List.sort t.A) ->

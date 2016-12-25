@@ -1,0 +1,116 @@
+
+## 1次元
+
+```math
+\begin{align}
+&(a_1\vec{e_1})∧(b_1\vec{e_1}) \\
+&=0 \\
+&(a_1\vec{e_1})×(b_1\vec{e_1}) \\
+&=0 \\
+\end{align}
+```
+
+## 2次元
+
+```math
+\begin{align}
+&(a_1\vec{e_1}+a_2\vec{e_2})∧(b_1\vec{e_1}+b_2\vec{e_2}) \\
+&=(a_1b_2-a_2b_1)\vec{e_1}∧\vec{e_2} \\
+&(a_1\vec{e_1}+a_2\vec{e_2})×(b_1\vec{e_1}+b_2\vec{e_2}) \\
+&=(a_1b_2-a_2b_1)\vec{e_3} \\
+\end{align}
+```
+
+## 3次元
+
+```math
+\begin{align}
+&(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3})∧(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}) \\
+&=(a_1b_2-a_2b_1)\vec{e_1}∧\vec{e_2}+(a_1b_3-a_3b_1)\vec{e_1}∧\vec{e_3}+(a_2b_3-a_3b_2)\vec{e_2}∧\vec{e_3} \\
+&(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3})×(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}) \\
+&=(a_2b_3-a_3b_2)\vec{e_1} \\
+&\quad +(a_3b_1-a_1b_3)\vec{e_2} \\
+&\quad +(a_1b_2-a_2b_1)\vec{e_3} \\
+\end{align}
+```
+
+## 4次元
+
+```math
+\begin{align}
+&(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3}+a_4\vec{e_4})∧(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}+b_4\vec{e_4}) \\
+&=(a_1b_2-a_2b_1)\vec{e_1}∧\vec{e_2}+(a_1b_3-a_3b_1)\vec{e_1}∧\vec{e_3}+(a_1b_4-a_4b_1)\vec{e_1}∧\vec{e_4} \\
+&\quad +(a_2b_3-a_3b_2)\vec{e_2}∧\vec{e_3}+(a_2b_4-a_4b_2)\vec{e_2}∧\vec{e_4}+(a_3b_4-a_4b_3)\vec{e_3}∧\vec{e_4} \\
+&(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3}+a_4\vec{e_4})×(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}+b_4\vec{e_4}) \\
+&=(a_2b_3-a_3b_2)\vec{e_1} \\
+&\quad +(a_3b_1-a_1b_3)\vec{e_2} \\
+&\quad +(a_1b_2-a_2b_1)\vec{e_3} \\
+&\quad +(a_1b_4-a_4b_1)\vec{e_5} \\
+&\quad +(a_2b_4-a_4b_2)\vec{e_6} \\
+&\quad +(a_3b_4-a_4b_3)\vec{e_7} \\
+\end{align}
+```
+
+## 5次元
+
+```math
+\begin{align}
+&(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3}+a_4\vec{e_4}+a_5\vec{e_5})∧(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}+b_4\vec{e_4}+b_5\vec{e_5}) \\
+&=(a_1b_2-a_2b_1)\vec{e_1}∧\vec{e_2}+(a_1b_3-a_3b_1)\vec{e_1}∧\vec{e_3}+(a_1b_4-a_4b_1)\vec{e_1}∧\vec{e_4} \\
+&\quad +(a_1b_5-a_5b_1)\vec{e_1}∧\vec{e_5}+(a_2b_3-a_3b_2)\vec{e_2}∧\vec{e_3}+(a_2b_4-a_4b_2)\vec{e_2}∧\vec{e_4} \\
+&\quad +(a_2b_5-a_5b_2)\vec{e_2}∧\vec{e_5}+(a_3b_4-a_4b_3)\vec{e_3}∧\vec{e_4}+(a_3b_5-a_5b_3)\vec{e_3}∧\vec{e_5} \\
+&\quad +(a_4b_5-a_5b_4)\vec{e_4}∧\vec{e_5} \\
+&(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3}+a_4\vec{e_4}+a_5\vec{e_5})×(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}+b_4\vec{e_4}+b_5\vec{e_5}) \\
+&=(a_2b_3-a_3b_2+a_4b_5-a_5b_4)\vec{e_1} \\
+&\quad +(a_3b_1-a_1b_3)\vec{e_2} \\
+&\quad +(a_1b_2-a_2b_1)\vec{e_3} \\
+&\quad +(a_5b_1-a_1b_5)\vec{e_4} \\
+&\quad +(a_1b_4-a_4b_1)\vec{e_5} \\
+&\quad +(a_2b_4-a_4b_2+a_5b_3-a_3b_5)\vec{e_6} \\
+&\quad +(a_2b_5-a_5b_2+a_3b_4-a_4b_3)\vec{e_7} \\
+\end{align}
+```
+
+## 6次元
+
+```math
+\begin{align}
+&(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3}+a_4\vec{e_4}+a_5\vec{e_5}+a_6\vec{e_6})∧(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}+b_4\vec{e_4}+b_5\vec{e_5}+b_6\vec{e_6}) \\
+&=(a_1b_2-a_2b_1)\vec{e_1}∧\vec{e_2}+(a_1b_3-a_3b_1)\vec{e_1}∧\vec{e_3}+(a_1b_4-a_4b_1)\vec{e_1}∧\vec{e_4} \\
+&\quad +(a_1b_5-a_5b_1)\vec{e_1}∧\vec{e_5}+(a_1b_6-a_6b_1)\vec{e_1}∧\vec{e_6}+(a_2b_3-a_3b_2)\vec{e_2}∧\vec{e_3} \\
+&\quad +(a_2b_4-a_4b_2)\vec{e_2}∧\vec{e_4}+(a_2b_5-a_5b_2)\vec{e_2}∧\vec{e_5}+(a_2b_6-a_6b_2)\vec{e_2}∧\vec{e_6} \\
+&\quad +(a_3b_4-a_4b_3)\vec{e_3}∧\vec{e_4}+(a_3b_5-a_5b_3)\vec{e_3}∧\vec{e_5}+(a_3b_6-a_6b_3)\vec{e_3}∧\vec{e_6} \\
+&\quad +(a_4b_5-a_5b_4)\vec{e_4}∧\vec{e_5}+(a_4b_6-a_6b_4)\vec{e_4}∧\vec{e_6}+(a_5b_6-a_6b_5)\vec{e_5}∧\vec{e_6} \\
+&(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3}+a_4\vec{e_4}+a_5\vec{e_5}+a_6\vec{e_6})×(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}+b_4\vec{e_4}+b_5\vec{e_5}+b_6\vec{e_6}) \\
+&=(a_2b_3-a_3b_2+a_4b_5-a_5b_4)\vec{e_1} \\
+&\quad +(a_3b_1-a_1b_3+a_4b_6-a_6b_4)\vec{e_2} \\
+&\quad +(a_1b_2-a_2b_1+a_6b_5-a_5b_6)\vec{e_3} \\
+&\quad +(a_5b_1-a_1b_5+a_6b_2-a_2b_6)\vec{e_4} \\
+&\quad +(a_1b_4-a_4b_1+a_3b_6-a_6b_3)\vec{e_5} \\
+&\quad +(a_2b_4-a_4b_2+a_5b_3-a_3b_5)\vec{e_6} \\
+&\quad +(a_6b_1-a_1b_6+a_2b_5-a_5b_2+a_3b_4-a_4b_3)\vec{e_7} \\
+\end{align}
+```
+
+## 7次元
+
+```math
+\begin{align}
+&(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3}+a_4\vec{e_4}+a_5\vec{e_5}+a_6\vec{e_6}+a_7\vec{e_7})∧(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}+b_4\vec{e_4}+b_5\vec{e_5}+b_6\vec{e_6}+b_7\vec{e_7}) \\
+&=(a_1b_2-a_2b_1)\vec{e_1}∧\vec{e_2}+(a_1b_3-a_3b_1)\vec{e_1}∧\vec{e_3}+(a_1b_4-a_4b_1)\vec{e_1}∧\vec{e_4} \\
+&\quad +(a_1b_5-a_5b_1)\vec{e_1}∧\vec{e_5}+(a_1b_6-a_6b_1)\vec{e_1}∧\vec{e_6}+(a_1b_7-a_7b_1)\vec{e_1}∧\vec{e_7} \\
+&\quad +(a_2b_3-a_3b_2)\vec{e_2}∧\vec{e_3}+(a_2b_4-a_4b_2)\vec{e_2}∧\vec{e_4}+(a_2b_5-a_5b_2)\vec{e_2}∧\vec{e_5} \\
+&\quad +(a_2b_6-a_6b_2)\vec{e_2}∧\vec{e_6}+(a_2b_7-a_7b_2)\vec{e_2}∧\vec{e_7}+(a_3b_4-a_4b_3)\vec{e_3}∧\vec{e_4} \\
+&\quad +(a_3b_5-a_5b_3)\vec{e_3}∧\vec{e_5}+(a_3b_6-a_6b_3)\vec{e_3}∧\vec{e_6}+(a_3b_7-a_7b_3)\vec{e_3}∧\vec{e_7} \\
+&\quad +(a_4b_5-a_5b_4)\vec{e_4}∧\vec{e_5}+(a_4b_6-a_6b_4)\vec{e_4}∧\vec{e_6}+(a_4b_7-a_7b_4)\vec{e_4}∧\vec{e_7} \\
+&\quad +(a_5b_6-a_6b_5)\vec{e_5}∧\vec{e_6}+(a_5b_7-a_7b_5)\vec{e_5}∧\vec{e_7}+(a_6b_7-a_7b_6)\vec{e_6}∧\vec{e_7} \\
+&(a_1\vec{e_1}+a_2\vec{e_2}+a_3\vec{e_3}+a_4\vec{e_4}+a_5\vec{e_5}+a_6\vec{e_6}+a_7\vec{e_7})×(b_1\vec{e_1}+b_2\vec{e_2}+b_3\vec{e_3}+b_4\vec{e_4}+b_5\vec{e_5}+b_6\vec{e_6}+b_7\vec{e_7}) \\
+&=(a_2b_3-a_3b_2+a_4b_5-a_5b_4+a_7b_6-a_6b_7)\vec{e_1} \\
+&\quad +(a_3b_1-a_1b_3+a_4b_6-a_6b_4+a_5b_7-a_7b_5)\vec{e_2} \\
+&\quad +(a_1b_2-a_2b_1+a_4b_7-a_7b_4+a_6b_5-a_5b_6)\vec{e_3} \\
+&\quad +(a_5b_1-a_1b_5+a_6b_2-a_2b_6+a_7b_3-a_3b_7)\vec{e_4} \\
+&\quad +(a_1b_4-a_4b_1+a_7b_2-a_2b_7+a_3b_6-a_6b_3)\vec{e_5} \\
+&\quad +(a_1b_7-a_7b_1+a_2b_4-a_4b_2+a_5b_3-a_3b_5)\vec{e_6} \\
+&\quad +(a_6b_1-a_1b_6+a_2b_5-a_5b_2+a_3b_4-a_4b_3)\vec{e_7} \\
+\end{align}
+```

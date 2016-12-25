@@ -7,12 +7,7 @@ let showProd op f g sort1 sort2 filter nl a b =
     let sa = Term.strs f a |> Term.bracket
     let sb = Term.strs f b |> Term.bracket
     printfn @"&%s%s%s \\" sa op sb
-    Term.splits a
-    |> List.mapi (fun i a ->
-        Term.splits b
-        |> List.mapi (fun j b ->
-            Term.strProd op f g a b |> snd))
-    |> List.concat
+    Term.prods g a b
     |> Term.simplify
     |> Term.sort sort1 sort2
     |> List.filter filter
