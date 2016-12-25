@@ -1,31 +1,119 @@
-type Quaternion =
-    E | I | J | K
+#load "Math7.Term.fsx"
+open Math7
 
-    override x.ToString() =
-        match x with
-        | E -> "1" | I -> "i" | J -> "j" | K -> "k"
+printfn "# 複素数"
+let compStr = Seq.map (fun e -> [| ""; "i" |].[e]) >> Term.strPower
+let compProd title =
+    Term.showProd title "" compStr
+        (function
+        | [x; y] when x = y -> term -1
+        | es -> Term.fromE es)
+        id Term.byIndexSign (fun _ -> true)
+let ca = [term(1, ["a_0"], []); term(1, ["a_1"], [1])]
+let cb = [term(1, ["b_0"], []); term(1, ["b_1"], [1])]
+compProd "## 積" ca cb
+Math7.prologue "## 共役"
+let conj (ts:term list) =
+    ts |> List.map (fun t -> if t.E = [] then t else -1 * t)
+printfn "(%s)^*&=%s" (Term.strs compStr ca) (conj ca |> Term.strs compStr)
+Math7.epilogue()
+compProd "## ノルム" (conj ca) ca
 
-    member x.Next =
-        match x with
-        | E -> E | I -> J | J -> K | K -> I
+printfn ""
+printfn "# 三元数"
+Term.showProd "## 積" ""
+    (Seq.map (fun e -> [""; "i"; "j"].[e]) >> Term.strPower)
+    (function
+    | [x; y] when x = y -> term -1
+    | [2; 1] -> term(1, [], [1; 2])
+    | es -> Term.fromE es)
+    id Term.byIndexSign (fun _ -> true)
+    (term(1, ["a_0"], [])::[for i in [1..2] -> term(1, [sprintf "a_%d" i], [i])])
+    (term(1, ["b_0"], [])::[for i in [1..2] -> term(1, [sprintf "b_%d" i], [i])])
 
-    static member (*)(a:Quaternion, b:Quaternion) =
-        match a, b with
-        | x, E            ->  1, x  // i1 = i
-        | E, y            ->  1, y  // 1i = i
-        | x, y when x = y -> -1, E  // ii = -1
-        | x, y when x.Next = y      // ij = k
-               -> 1, y.Next
-        | x, y -> let c, z = y * x  // ji = -ij
-                  -c, z
+printfn ""
+printfn "# 双複素数"
+let ijk = Seq.map (fun e -> [""; "i"; "j"; "k"].[e]) >> Term.strPower
+let dcompProdE = function
+| [1; 1] | [2; 2] -> term -1            // ii=jj=-1
+| [3; 3] -> term.One                    // kk=1
+| [1; 2] | [2; 1] -> term( 1, [], [3])  // ij=ji=k
+| [2; 3] | [3; 2] -> term(-1, [], [1])  // jk=kj=-i
+| [3; 1] | [1; 3] -> term(-1, [], [2])  // ki=ik=-j
+| es -> Term.fromE es
+let dcompProd title =
+    Term.showProd title "" ijk dcompProdE id Term.byIndexSign (fun _ -> true)
+let qa = term(1, ["a_0"], [])::[for i in [1..3] -> term(1, [sprintf "a_%d" i], [i])]
+let qb = term(1, ["b_0"], [])::[for i in [1..3] -> term(1, [sprintf "b_%d" i], [i])]
+dcompProd "## 積" qa qb
+Math7.prologue "## 共役"
+let dcompConj (ts:term list) =
+    ts |> List.map (fun t -> match t.E with [2] | [3] -> -1 * t | _ -> t)
+printfn "(%s)^*&=%s" (Term.strs ijk qa) (dcompConj qa |> Term.strs ijk)
+Math7.epilogue()
+dcompProd "## ノルム" (dcompConj qa) qa
+Math7.prologue "### 確認"
+let dcompProd2 a b =
+    printfn @"&%s%s \\" (Term.strs ijk a |> Term.bracket) (Term.strs ijk b |> Term.bracket)
+    Term.prods dcompProdE a b
+    |> Term.simplify
+    |> Term.sort id Term.byIndexSign
+    |> Term.showProd3 ijk (fun _ -> false)
+for x in [1; -1] do
+    for y in [1; -1] do
+        for z in [1; -1] do
+            let a = [term(1, ["a_0"], [ ])
+                     term(x, ["a_1"], [1])
+                     term(y, ["a_2"], [2])
+                     term(z, ["a_3"], [3])]
+            dcompProd2 a qa
+Math7.epilogue()
 
-let str (a, z) =
-    (if a = -1 then "-" else " ") + string z
+printfn ""
+printfn "# テッサリン"
+let tessProdE = function
+| [1; 1] | [3; 3] -> term -1            // ii=kk=-1
+| [2; 2] -> term.One                    // jj=1
+| [1; 2] | [2; 1] -> term( 1, [], [3])  // ij=ji=k
+| [2; 3] | [3; 2] -> term( 1, [], [1])  // jk=kj=i
+| [3; 1] | [1; 3] -> term(-1, [], [2])  // ki=ik=-j
+| es -> Term.fromE es
+let tessProd title =
+    Term.showProd title "" ijk tessProdE id Term.byIndexSign (fun _ -> true)
+tessProd "## 積" qa qb
+tessProd "## ノルム" (dcompConj qa) qa
 
-let elems = [E; I; J; K]
+printfn ""
+printfn "# 分解型複素数"
+let spca = [term(1, ["a_0"], []); term(1, ["a_1"], [2])]
+let spcb = [term(1, ["b_0"], []); term(1, ["b_1"], [2])]
+tessProd "## 積" spca spcb
+tessProd "## ノルム" (dcompConj spca) spca
 
-for x in elems do
-    elems
-    |> List.map ((*) x >> str)
+printfn ""
+printfn "# 四元数"
+printfn ""
+printfn "## 乗積表"
+printfn ""
+let quatProdE n = function
+| [x; y] when x = y -> term n
+| [x; y] when x % 3 + 1 = y -> term( 1, [], [y % 3 + 1])
+| [y; x] when x % 3 + 1 = y -> term(-1, [], [y % 3 + 1])
+| es -> Term.fromE es
+for x in {0..3} do
+    seq {for y in {0..3} -> [x; y] |> List.filter ((<>) 0)}
+    |> Seq.map (quatProdE -1 >> Term.str ijk >> sprintf "%2s")
     |> String.concat " "
     |> printfn "%s"
+let quatProd title =
+    Term.showProd title "" ijk (quatProdE -1) id Term.byIndexSign (fun _ -> true)
+quatProd "## 積（ベクトル）" (List.tail qa) (List.tail qb)
+quatProd "## 積" qa qb
+quatProd "## ノルム" (conj qa) qa
+
+printfn ""
+printfn "# 双曲四元数"
+let hquatProd title =
+    Term.showProd title "" ijk (quatProdE 1) id Term.byIndexSign (fun _ -> true)
+hquatProd "## 積" qa qb
+hquatProd "## ノルム" (conj qa) qa

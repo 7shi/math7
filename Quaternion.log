@@ -1,0 +1,299 @@
+# 複素数
+
+## 積
+
+```math
+\begin{align}
+&(a_0+a_1i)(b_0+b_1i) \\
+&=a_0(b_0+b_1i) \\
+&\quad +a_1i(b_0+b_1i) \\
+&=a_0b_0+a_0b_1i \\
+&\quad +a_1b_0i+a_1b_1\underbrace{i^2}_{-1} \\
+&=(a_0b_0-a_1b_1) \\
+&\quad +(a_0b_1+a_1b_0)i \\
+\end{align}
+```
+
+## 共役
+
+```math
+\begin{align}
+(a_0+a_1i)^*&=a_0-a_1i
+\end{align}
+```
+
+## ノルム
+
+```math
+\begin{align}
+&(a_0-a_1i)(a_0+a_1i) \\
+&=a_0(a_0+a_1i) \\
+&\quad -a_1i(a_0+a_1i) \\
+&=a_0^2+a_0a_1i \\
+&\quad -a_1a_0i-a_1^2\underbrace{i^2}_{-1} \\
+&=a_0^2+a_1^2 \\
+\end{align}
+```
+
+# 三元数
+
+## 積
+
+```math
+\begin{align}
+&(a_0+a_1i+a_2j)(b_0+b_1i+b_2j) \\
+&=a_0(b_0+b_1i+b_2j) \\
+&\quad +a_1i(b_0+b_1i+b_2j) \\
+&\quad +a_2j(b_0+b_1i+b_2j) \\
+&=a_0b_0+a_0b_1i+a_0b_2j \\
+&\quad +a_1b_0i+a_1b_1\underbrace{i^2}_{-1}+a_1b_2ij \\
+&\quad +a_2b_0j+a_2b_1\underbrace{ji}_{ij}+a_2b_2\underbrace{j^2}_{-1} \\
+&=(a_0b_0-a_1b_1-a_2b_2) \\
+&\quad +(a_0b_1+a_1b_0)i \\
+&\quad +(a_1b_2+a_2b_1)ij \\
+&\quad +(a_0b_2+a_2b_0)j \\
+\end{align}
+```
+
+# 双複素数
+
+## 積
+
+```math
+\begin{align}
+&(a_0+a_1i+a_2j+a_3k)(b_0+b_1i+b_2j+b_3k) \\
+&=a_0(b_0+b_1i+b_2j+b_3k) \\
+&\quad +a_1i(b_0+b_1i+b_2j+b_3k) \\
+&\quad +a_2j(b_0+b_1i+b_2j+b_3k) \\
+&\quad +a_3k(b_0+b_1i+b_2j+b_3k) \\
+&=a_0b_0+a_0b_1i+a_0b_2j+a_0b_3k \\
+&\quad +a_1b_0i+a_1b_1\underbrace{i^2}_{-1}+a_1b_2\underbrace{ij}_{k}+a_1b_3\underbrace{ik}_{-j} \\
+&\quad +a_2b_0j+a_2b_1\underbrace{ji}_{k}+a_2b_2\underbrace{j^2}_{-1}+a_2b_3\underbrace{jk}_{-i} \\
+&\quad +a_3b_0k+a_3b_1\underbrace{ki}_{-j}+a_3b_2\underbrace{kj}_{-i}+a_3b_3\underbrace{k^2}_{1} \\
+&=(a_0b_0-a_1b_1-a_2b_2+a_3b_3) \\
+&\quad +(a_0b_1+a_1b_0-a_2b_3-a_3b_2)i \\
+&\quad +(a_0b_2+a_2b_0-a_1b_3-a_3b_1)j \\
+&\quad +(a_0b_3+a_3b_0+a_1b_2+a_2b_1)k \\
+\end{align}
+```
+
+## 共役
+
+```math
+\begin{align}
+(a_0+a_1i+a_2j+a_3k)^*&=a_0+a_1i-a_2j-a_3k
+\end{align}
+```
+
+## ノルム
+
+```math
+\begin{align}
+&(a_0+a_1i-a_2j-a_3k)(a_0+a_1i+a_2j+a_3k) \\
+&=a_0(a_0+a_1i+a_2j+a_3k) \\
+&\quad +a_1i(a_0+a_1i+a_2j+a_3k) \\
+&\quad -a_2j(a_0+a_1i+a_2j+a_3k) \\
+&\quad -a_3k(a_0+a_1i+a_2j+a_3k) \\
+&=a_0^2+a_0a_1i+a_0a_2j+a_0a_3k \\
+&\quad +a_1a_0i+a_1^2\underbrace{i^2}_{-1}+a_1a_2\underbrace{ij}_{k}+a_1a_3\underbrace{ik}_{-j} \\
+&\quad -a_2a_0j-a_2a_1\underbrace{ji}_{k}-a_2^2\underbrace{j^2}_{-1}-a_2a_3\underbrace{jk}_{-i} \\
+&\quad -a_3a_0k-a_3a_1\underbrace{ki}_{-j}-a_3a_2\underbrace{kj}_{-i}-a_3^2\underbrace{k^2}_{1} \\
+&=(a_0^2-a_1^2+a_2^2-a_3^2) \\
+&\quad +2(a_0a_1+a_2a_3)i \\
+\end{align}
+```
+
+### 確認
+
+```math
+\begin{align}
+&(a_0+a_1i+a_2j+a_3k)(a_0+a_1i+a_2j+a_3k) \\
+&=(a_0^2-a_1^2-a_2^2+a_3^2)+2(a_0a_1-a_2a_3)i+2(a_0a_2-a_1a_3)j+2(a_0a_3+a_1a_2)k \\
+&(a_0+a_1i+a_2j-a_3k)(a_0+a_1i+a_2j+a_3k) \\
+&=(a_0^2-a_1^2-a_2^2-a_3^2)+2a_0a_1i+2a_0a_2j+2a_1a_2k \\
+&(a_0+a_1i-a_2j+a_3k)(a_0+a_1i+a_2j+a_3k) \\
+&=(a_0^2-a_1^2+a_2^2+a_3^2)+2a_0a_1i-2a_1a_3j+2a_0a_3k \\
+&(a_0+a_1i-a_2j-a_3k)(a_0+a_1i+a_2j+a_3k) \\
+&=(a_0^2-a_1^2+a_2^2-a_3^2)+2(a_0a_1+a_2a_3)i \\
+&(a_0-a_1i+a_2j+a_3k)(a_0+a_1i+a_2j+a_3k) \\
+&=(a_0^2+a_1^2-a_2^2+a_3^2)-2a_2a_3i+2a_0a_2j+2a_0a_3k \\
+&(a_0-a_1i+a_2j-a_3k)(a_0+a_1i+a_2j+a_3k) \\
+&=(a_0^2+a_1^2-a_2^2-a_3^2)+2(a_0a_2+a_1a_3)j \\
+&(a_0-a_1i-a_2j+a_3k)(a_0+a_1i+a_2j+a_3k) \\
+&=(a_0^2+a_1^2+a_2^2+a_3^2)+2(a_0a_3-a_1a_2)k \\
+&(a_0-a_1i-a_2j-a_3k)(a_0+a_1i+a_2j+a_3k) \\
+&=(a_0^2+a_1^2+a_2^2-a_3^2)+2a_2a_3i+2a_1a_3j-2a_1a_2k \\
+\end{align}
+```
+
+# テッサリン
+
+## 積
+
+```math
+\begin{align}
+&(a_0+a_1i+a_2j+a_3k)(b_0+b_1i+b_2j+b_3k) \\
+&=a_0(b_0+b_1i+b_2j+b_3k) \\
+&\quad +a_1i(b_0+b_1i+b_2j+b_3k) \\
+&\quad +a_2j(b_0+b_1i+b_2j+b_3k) \\
+&\quad +a_3k(b_0+b_1i+b_2j+b_3k) \\
+&=a_0b_0+a_0b_1i+a_0b_2j+a_0b_3k \\
+&\quad +a_1b_0i+a_1b_1\underbrace{i^2}_{-1}+a_1b_2\underbrace{ij}_{k}+a_1b_3\underbrace{ik}_{-j} \\
+&\quad +a_2b_0j+a_2b_1\underbrace{ji}_{k}+a_2b_2\underbrace{j^2}_{1}+a_2b_3\underbrace{jk}_{i} \\
+&\quad +a_3b_0k+a_3b_1\underbrace{ki}_{-j}+a_3b_2\underbrace{kj}_{i}+a_3b_3\underbrace{k^2}_{-1} \\
+&=(a_0b_0-a_1b_1+a_2b_2-a_3b_3) \\
+&\quad +(a_0b_1+a_1b_0+a_2b_3+a_3b_2)i \\
+&\quad +(a_0b_2+a_2b_0-a_1b_3-a_3b_1)j \\
+&\quad +(a_0b_3+a_3b_0+a_1b_2+a_2b_1)k \\
+\end{align}
+```
+
+## ノルム
+
+```math
+\begin{align}
+&(a_0+a_1i-a_2j-a_3k)(a_0+a_1i+a_2j+a_3k) \\
+&=a_0(a_0+a_1i+a_2j+a_3k) \\
+&\quad +a_1i(a_0+a_1i+a_2j+a_3k) \\
+&\quad -a_2j(a_0+a_1i+a_2j+a_3k) \\
+&\quad -a_3k(a_0+a_1i+a_2j+a_3k) \\
+&=a_0^2+a_0a_1i+a_0a_2j+a_0a_3k \\
+&\quad +a_1a_0i+a_1^2\underbrace{i^2}_{-1}+a_1a_2\underbrace{ij}_{k}+a_1a_3\underbrace{ik}_{-j} \\
+&\quad -a_2a_0j-a_2a_1\underbrace{ji}_{k}-a_2^2\underbrace{j^2}_{1}-a_2a_3\underbrace{jk}_{i} \\
+&\quad -a_3a_0k-a_3a_1\underbrace{ki}_{-j}-a_3a_2\underbrace{kj}_{i}-a_3^2\underbrace{k^2}_{-1} \\
+&=(a_0^2-a_1^2-a_2^2+a_3^2) \\
+&\quad +2(a_0a_1-a_2a_3)i \\
+\end{align}
+```
+
+# 分解型複素数
+
+## 積
+
+```math
+\begin{align}
+&(a_0+a_1j)(b_0+b_1j) \\
+&=a_0(b_0+b_1j) \\
+&\quad +a_1j(b_0+b_1j) \\
+&=a_0b_0+a_0b_1j \\
+&\quad +a_1b_0j+a_1b_1\underbrace{j^2}_{1} \\
+&=(a_0b_0+a_1b_1) \\
+&\quad +(a_0b_1+a_1b_0)j \\
+\end{align}
+```
+
+## ノルム
+
+```math
+\begin{align}
+&(a_0-a_1j)(a_0+a_1j) \\
+&=a_0(a_0+a_1j) \\
+&\quad -a_1j(a_0+a_1j) \\
+&=a_0^2+a_0a_1j \\
+&\quad -a_1a_0j-a_1^2\underbrace{j^2}_{1} \\
+&=a_0^2-a_1^2 \\
+\end{align}
+```
+
+# 四元数
+
+## 乗積表
+
+ 1  i  j  k
+ i -1  k -j
+ j -k -1  i
+ k  j -i -1
+
+## 積（ベクトル）
+
+```math
+\begin{align}
+&(a_1i+a_2j+a_3k)(b_1i+b_2j+b_3k) \\
+&=a_1i(b_1i+b_2j+b_3k) \\
+&\quad +a_2j(b_1i+b_2j+b_3k) \\
+&\quad +a_3k(b_1i+b_2j+b_3k) \\
+&=a_1b_1\underbrace{i^2}_{-1}+a_1b_2\underbrace{ij}_{k}+a_1b_3\underbrace{ik}_{-j} \\
+&\quad +a_2b_1\underbrace{ji}_{-k}+a_2b_2\underbrace{j^2}_{-1}+a_2b_3\underbrace{jk}_{i} \\
+&\quad +a_3b_1\underbrace{ki}_{j}+a_3b_2\underbrace{kj}_{-i}+a_3b_3\underbrace{k^2}_{-1} \\
+&=-(a_1b_1+a_2b_2+a_3b_3) \\
+&\quad +(a_2b_3-a_3b_2)i \\
+&\quad +(a_3b_1-a_1b_3)j \\
+&\quad +(a_1b_2-a_2b_1)k \\
+\end{align}
+```
+
+## 積
+
+```math
+\begin{align}
+&(a_0+a_1i+a_2j+a_3k)(b_0+b_1i+b_2j+b_3k) \\
+&=a_0(b_0+b_1i+b_2j+b_3k) \\
+&\quad +a_1i(b_0+b_1i+b_2j+b_3k) \\
+&\quad +a_2j(b_0+b_1i+b_2j+b_3k) \\
+&\quad +a_3k(b_0+b_1i+b_2j+b_3k) \\
+&=a_0b_0+a_0b_1i+a_0b_2j+a_0b_3k \\
+&\quad +a_1b_0i+a_1b_1\underbrace{i^2}_{-1}+a_1b_2\underbrace{ij}_{k}+a_1b_3\underbrace{ik}_{-j} \\
+&\quad +a_2b_0j+a_2b_1\underbrace{ji}_{-k}+a_2b_2\underbrace{j^2}_{-1}+a_2b_3\underbrace{jk}_{i} \\
+&\quad +a_3b_0k+a_3b_1\underbrace{ki}_{j}+a_3b_2\underbrace{kj}_{-i}+a_3b_3\underbrace{k^2}_{-1} \\
+&=(a_0b_0-a_1b_1-a_2b_2-a_3b_3) \\
+&\quad +(a_0b_1+a_1b_0+a_2b_3-a_3b_2)i \\
+&\quad +(a_0b_2+a_2b_0+a_3b_1-a_1b_3)j \\
+&\quad +(a_0b_3+a_3b_0+a_1b_2-a_2b_1)k \\
+\end{align}
+```
+
+## ノルム
+
+```math
+\begin{align}
+&(a_0-a_1i-a_2j-a_3k)(a_0+a_1i+a_2j+a_3k) \\
+&=a_0(a_0+a_1i+a_2j+a_3k) \\
+&\quad -a_1i(a_0+a_1i+a_2j+a_3k) \\
+&\quad -a_2j(a_0+a_1i+a_2j+a_3k) \\
+&\quad -a_3k(a_0+a_1i+a_2j+a_3k) \\
+&=a_0^2+a_0a_1i+a_0a_2j+a_0a_3k \\
+&\quad -a_1a_0i-a_1^2\underbrace{i^2}_{-1}-a_1a_2\underbrace{ij}_{k}-a_1a_3\underbrace{ik}_{-j} \\
+&\quad -a_2a_0j-a_2a_1\underbrace{ji}_{-k}-a_2^2\underbrace{j^2}_{-1}-a_2a_3\underbrace{jk}_{i} \\
+&\quad -a_3a_0k-a_3a_1\underbrace{ki}_{j}-a_3a_2\underbrace{kj}_{-i}-a_3^2\underbrace{k^2}_{-1} \\
+&=a_0^2+a_1^2+a_2^2+a_3^2 \\
+\end{align}
+```
+
+# 双曲四元数
+
+## 積
+
+```math
+\begin{align}
+&(a_0+a_1i+a_2j+a_3k)(b_0+b_1i+b_2j+b_3k) \\
+&=a_0(b_0+b_1i+b_2j+b_3k) \\
+&\quad +a_1i(b_0+b_1i+b_2j+b_3k) \\
+&\quad +a_2j(b_0+b_1i+b_2j+b_3k) \\
+&\quad +a_3k(b_0+b_1i+b_2j+b_3k) \\
+&=a_0b_0+a_0b_1i+a_0b_2j+a_0b_3k \\
+&\quad +a_1b_0i+a_1b_1\underbrace{i^2}_{1}+a_1b_2\underbrace{ij}_{k}+a_1b_3\underbrace{ik}_{-j} \\
+&\quad +a_2b_0j+a_2b_1\underbrace{ji}_{-k}+a_2b_2\underbrace{j^2}_{1}+a_2b_3\underbrace{jk}_{i} \\
+&\quad +a_3b_0k+a_3b_1\underbrace{ki}_{j}+a_3b_2\underbrace{kj}_{-i}+a_3b_3\underbrace{k^2}_{1} \\
+&=(a_0b_0+a_1b_1+a_2b_2+a_3b_3) \\
+&\quad +(a_0b_1+a_1b_0+a_2b_3-a_3b_2)i \\
+&\quad +(a_0b_2+a_2b_0+a_3b_1-a_1b_3)j \\
+&\quad +(a_0b_3+a_3b_0+a_1b_2-a_2b_1)k \\
+\end{align}
+```
+
+## ノルム
+
+```math
+\begin{align}
+&(a_0-a_1i-a_2j-a_3k)(a_0+a_1i+a_2j+a_3k) \\
+&=a_0(a_0+a_1i+a_2j+a_3k) \\
+&\quad -a_1i(a_0+a_1i+a_2j+a_3k) \\
+&\quad -a_2j(a_0+a_1i+a_2j+a_3k) \\
+&\quad -a_3k(a_0+a_1i+a_2j+a_3k) \\
+&=a_0^2+a_0a_1i+a_0a_2j+a_0a_3k \\
+&\quad -a_1a_0i-a_1^2\underbrace{i^2}_{1}-a_1a_2\underbrace{ij}_{k}-a_1a_3\underbrace{ik}_{-j} \\
+&\quad -a_2a_0j-a_2a_1\underbrace{ji}_{-k}-a_2^2\underbrace{j^2}_{1}-a_2a_3\underbrace{jk}_{i} \\
+&\quad -a_3a_0k-a_3a_1\underbrace{ki}_{j}-a_3a_2\underbrace{kj}_{-i}-a_3^2\underbrace{k^2}_{1} \\
+&=a_0^2-a_1^2-a_2^2-a_3^2 \\
+\end{align}
+```
