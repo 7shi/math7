@@ -148,9 +148,9 @@ module Term =
         |> Seq.groupBy (fun t -> t.E)
         |> Seq.map (fun (e, al) ->
             let e, al = fromE e, al |> Seq.map dupNA |> simplifyA
-            let n = gcdN al
-            if n = 1 then e, al else
-            n * e, al |> List.map (fun a -> term (a.N / n, a.A, a.E)))
+            match gcdN al with
+            | 0 | 1 -> e, al
+            | n -> n * e, al |> List.map (fun a -> term (a.N / n, a.A, a.E)))
         |> Seq.filter (fun (_, ts) -> not <| ts.IsEmpty)
         |> Seq.toList
 
