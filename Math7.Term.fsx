@@ -91,6 +91,18 @@ module Term =
     let neg (ts:term list) =
         ts |> List.map (fun t -> -1 * t)
 
+    let gcd x y =
+        let rec f x = function
+        | 0 -> x
+        | y -> f y (x % y)
+        let m = x < 0 && y < 0
+        let r = f (abs x) (abs y)
+        if m then -r else r
+
+    let gcdN:term list -> int = function
+    | [] -> 0
+    | ts -> ts |> Seq.map (fun t -> t.N) |> Seq.reduce gcd
+
     let prodA (t1:term) (t2:term) =
         term(t1.N * t2.N, List.append t1.A t2.A, [])
 
@@ -129,7 +141,9 @@ module Term =
         |> Seq.groupBy (fun t -> t.E)
         |> Seq.map (fun (e, al) ->
             let e, al = fromE e, al |> Seq.map dupNA |> simplifyA
-            if allNeg al then -1 * e, neg al else e, al)
+            let n = gcdN al
+            if n = 1 then e, al else
+            n * e, al |> List.map (fun a -> term (a.N / n, a.A, a.E)))
         |> Seq.filter (fun (_, ts) -> not <| ts.IsEmpty)
         |> Seq.toList
 
