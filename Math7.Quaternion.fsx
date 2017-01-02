@@ -51,15 +51,17 @@ let qa = term(1, ["a_0"], [])::[for i in [1..3] -> term(1, [sprintf "a_%d" i], [
 let qb = term(1, ["b_0"], [])::[for i in [1..3] -> term(1, [sprintf "b_%d" i], [i])]
 let dcompConj (ts:term list) =
     ts |> List.map (fun t -> match t.E with [2] | [3] -> -1 * t | _ -> t)
-let dcompProd2 a b =
-    let sa = Term.strs ijk a |> Term.bracket
-    let sb = Term.strs ijk b |> Term.bracket
+let showProd f g a b =
+    let sa = Term.strs f a |> Term.bracket
+    let sb = Term.strs f b |> Term.bracket
     if sa = sb then printf @"&%s^2=" sa else printf @"&%s%s=" sa sb
-    Term.prods dcompProdE a b
-    |> Term.simplify
-    |> Term.sort id Term.byIndexSign
-    |> List.iteri (fun i d1 ->
-        let s = Term.str3 ijk d1
+    let d =
+        Term.prods g a b
+        |> Term.simplify
+        |> Term.sort id Term.byIndexSign
+    d |> List.iteri (fun i d1 ->
+        let s = Term.str3 f d1
+        let s = if d.Length = 1 then Term.unbracket s else s
         printf "%s" <| if i = 0 then s else Term.addSign s)
     printfn @" \\"
 if Math7.isMain() then
@@ -78,7 +80,7 @@ if Math7.isMain() then
                          term(x, ["a_1"], [1])
                          term(y, ["a_2"], [2])
                          term(z, ["a_3"], [3])]
-                dcompProd2 a qa
+                showProd ijk dcompProdE a qa
     Math7.epilogue()
 
 let tessProdE = function
