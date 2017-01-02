@@ -54,11 +54,16 @@ Math7.epilogue()
 dcompProd "## ノルム" (dcompConj qa) qa
 Math7.prologue "### 確認"
 let dcompProd2 a b =
-    printfn @"&%s%s \\" (Term.strs ijk a |> Term.bracket) (Term.strs ijk b |> Term.bracket)
+    let sa = Term.strs ijk a |> Term.bracket
+    let sb = Term.strs ijk b |> Term.bracket
+    if sa = sb then printf @"&%s^2=" sa else printf @"&%s%s=" sa sb
     Term.prods dcompProdE a b
     |> Term.simplify
     |> Term.sort id Term.byIndexSign
-    |> Term.showProd3 ijk (fun _ -> false)
+    |> List.iteri (fun i d1 ->
+        let s = Term.str3 ijk d1
+        printf "%s" <| if i = 0 then s else Term.addSign s)
+    printfn @" \\"
 for x in [1; -1] do
     for y in [1; -1] do
         for z in [1; -1] do
