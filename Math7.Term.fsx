@@ -196,19 +196,23 @@ module Term =
             list)
         |> List.concat
 
-    let showProd3 f nl (d:(term * term list) list) =
-        if d.Length = 0 then printfn @"&=0 \\" else
+    let showProd3Raw f nl (d:(term * term list) list) =
+        if d.Length = 0 then printfn @"0 \\" else
         d |> List.iteri (fun i d1 ->
             let s = str3 f d1
             let s = if d.Length = 1 then unbracket s else s
             if i = 0 then
-                printf @"&=%s" s
+                printf @"%s" s
             else
                 if nl i then
                     printfn @" \\"
                     printf @"&\quad "
                 printf "%s" (addSign s))
         printfn @" \\"
+
+    let showProd3 f nl (d:(term * term list) list) =
+        printf "&="
+        showProd3Raw f nl d
 
     let showProd title op f g sort1 sort2 nl a b =
         Math7.prologue title
