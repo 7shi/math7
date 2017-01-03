@@ -130,18 +130,15 @@ module Term =
         let ge = g p.E
         term(p.N * ge.N, p.A, ge.E)]
 
-    let simplifyA (terms:term seq) =
-        seq {
-            for a, ts in terms |> Seq.groupBy (fun t -> List.sort t.A) ->
-            match Seq.toList ts with
-            | [ ] -> term.Zero
-            | [x] -> x
-            | x::xs ->
-                let n = ts |> Seq.map (fun t -> t.N) |> Seq.sum
-                let c = xs |> Seq.filter (fun t -> x.A = t.A) |> Seq.length
-                term(n, (if c = xs.Length then x.A else a), [])}
-        |> Seq.filter (fun t -> t.N <> 0)
-        |> Seq.toList
+    let simplifyA (terms:term seq) = [
+        for a, ts in terms |> Seq.groupBy (fun t -> List.sort t.A) do
+        match Seq.toList ts with
+        | [] -> ()
+        | x::xs ->
+            let n = ts |> Seq.map (fun t -> t.N) |> Seq.sum
+            if n = 0 then () else
+            let c = xs |> Seq.filter (fun t -> x.A = t.A) |> Seq.length
+            yield term(n, (if c = xs.Length then x.A else a), [])]
 
     let simplify (terms:term seq) =
         terms
