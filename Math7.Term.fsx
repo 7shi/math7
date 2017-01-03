@@ -81,7 +81,12 @@ module Term =
         let sea = strA e
         let sal = strs f al
         let see = f e.E
-        let sal = if Seq.length al = 1 then sal else bracket sal
+        let sal =
+            if Seq.length al <> 1 then
+                bracket sal
+            elif sal = "1" && see <> "" then
+                ""
+            else sal
         sea + sal + see |> fix
 
     let allNeg (ts:term list) =
