@@ -50,7 +50,7 @@ let dcompProd title =
 let qa = term(1, ["a_0"], [])::[for i in [1..3] -> term(1, [sprintf "a_%d" i], [i])]
 let qb = term(1, ["b_0"], [])::[for i in [1..3] -> term(1, [sprintf "b_%d" i], [i])]
 let dcompConj (ts:term list) =
-    ts |> List.map (fun t -> match t.E with [2] | [3] -> -1 * t | _ -> t)
+    ts |> List.map (fun t -> match t.E with [1] | [2] -> -1 * t | _ -> t)
 let showProd f g a b =
     let sa = Term.strs f a |> Term.bracket
     let sb = Term.strs f b |> Term.bracket
@@ -92,11 +92,13 @@ let tessProdE = function
 | es -> Term.fromE es
 let tessProd title =
     Term.showProd title "" ijk tessProdE id Term.byIndexSign (fun _ -> true)
+let tessConj (ts:term list) =
+    ts |> List.map (fun t -> match t.E with [1] | [3] -> -1 * t | _ -> t)
 if Math7.isMain() then
     printfn ""
     printfn "# テッサリン"
     tessProd "## 積" qa qb
-    tessProd "## ノルム" (dcompConj qa) qa
+    tessProd "## ノルム" (tessConj qa) qa
 
 let spca = [term(1, ["a_0"], []); term(1, ["a_1"], [2])]
 let spcb = [term(1, ["b_0"], []); term(1, ["b_1"], [2])]
