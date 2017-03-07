@@ -84,7 +84,7 @@ module Term =
         let sal =
             if Seq.length al <> 1 then
                 bracket sal
-            elif sal = "1" && see <> "" then
+            elif sal = "1" && sea + see <> "" then
                 ""
             else sal
         sea + sal + see |> fix
