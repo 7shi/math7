@@ -137,3 +137,18 @@ if Math7.isMain() then
     printfn "# 双曲四元数"
     hquatProd "## 積" qa qb
     hquatProd "## ノルム" (conj qa) qa
+
+let quat a b c d = [term(a, [], []); term(b, [], [1]); term(c, [], [2]); term(d, [], [3])]
+if Math7.isMain() then
+    printfn ""
+    printfn "# 共役との積"
+    let qa, qb = quat 1 2 3 4, quat 5 6 7 8
+    quatProd "## 四元数" (conj qa) qb
+    dcompProd "## 双複素数" (dcompConj qa) qb
+    tessProd "## テッサリン" (tessConj qa) qb
+
+    let q1, q2, q3, q4 = quat 1 2 3 4, quat 5 6 7 8, quat 9 10 11 12, quat 13 14 15 16
+    quatProd "## 四元数1" (conj q1) q3
+    quatProd "## 四元数2" (conj q2) q3
+    quatProd "## 四元数3" (conj q1) q4
+    quatProd "## 四元数4" (conj q2) q4

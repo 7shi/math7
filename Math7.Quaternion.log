@@ -289,3 +289,140 @@
 &=a_0^2-a_1^2-a_2^2-a_3^2 \\
 \end{align}
 ```
+
+# 共役との積
+
+## 四元数
+
+```math
+\begin{align}
+&(1-2i-3j-4k)(5+6i+7j+8k) \\
+&=1(5+6i+7j+8k) \\
+&\quad -2i(5+6i+7j+8k) \\
+&\quad -3j(5+6i+7j+8k) \\
+&\quad -4k(5+6i+7j+8k) \\
+&=5+6i+7j+8k \\
+&\quad -10i-12\underbrace{i^2}_{-1}-14\underbrace{ij}_{k}-16\underbrace{ik}_{-j} \\
+&\quad -15j-18\underbrace{ji}_{-k}-21\underbrace{j^2}_{-1}-24\underbrace{jk}_{i} \\
+&\quad -20k-24\underbrace{ki}_{j}-28\underbrace{kj}_{-i}-32\underbrace{k^2}_{-1} \\
+&=70 \\
+&\quad -16j \\
+&\quad -8k \\
+\end{align}
+```
+
+## 双複素数
+
+```math
+\begin{align}
+&(1-2i-3j+4k)(5+6i+7j+8k) \\
+&=1(5+6i+7j+8k) \\
+&\quad -2i(5+6i+7j+8k) \\
+&\quad -3j(5+6i+7j+8k) \\
+&\quad +4k(5+6i+7j+8k) \\
+&=5+6i+7j+8k \\
+&\quad -10i-12\underbrace{i^2}_{-1}-14\underbrace{ij}_{k}-16\underbrace{ik}_{-j} \\
+&\quad -15j-18\underbrace{ji}_{k}-21\underbrace{j^2}_{-1}-24\underbrace{jk}_{-i} \\
+&\quad +20k+24\underbrace{ki}_{-j}+28\underbrace{kj}_{-i}+32\underbrace{k^2}_{1} \\
+&=70 \\
+&\quad -8i \\
+&\quad -16j \\
+&\quad -4k \\
+\end{align}
+```
+
+## テッサリン
+
+```math
+\begin{align}
+&(1-2i+3j-4k)(5+6i+7j+8k) \\
+&=1(5+6i+7j+8k) \\
+&\quad -2i(5+6i+7j+8k) \\
+&\quad +3j(5+6i+7j+8k) \\
+&\quad -4k(5+6i+7j+8k) \\
+&=5+6i+7j+8k \\
+&\quad -10i-12\underbrace{i^2}_{-1}-14\underbrace{ij}_{k}-16\underbrace{ik}_{-j} \\
+&\quad +15j+18\underbrace{ji}_{k}+21\underbrace{j^2}_{1}+24\underbrace{jk}_{i} \\
+&\quad -20k-24\underbrace{ki}_{-j}-28\underbrace{kj}_{i}-32\underbrace{k^2}_{-1} \\
+&=70 \\
+&\quad -8i \\
+&\quad +62j \\
+&\quad -8k \\
+\end{align}
+```
+
+## 四元数1
+
+```math
+\begin{align}
+&(1-2i-3j-4k)(9+10i+11j+12k) \\
+&=1(9+10i+11j+12k) \\
+&\quad -2i(9+10i+11j+12k) \\
+&\quad -3j(9+10i+11j+12k) \\
+&\quad -4k(9+10i+11j+12k) \\
+&=9+10i+11j+12k \\
+&\quad -18i-20\underbrace{i^2}_{-1}-22\underbrace{ij}_{k}-24\underbrace{ik}_{-j} \\
+&\quad -27j-30\underbrace{ji}_{-k}-33\underbrace{j^2}_{-1}-36\underbrace{jk}_{i} \\
+&\quad -36k-40\underbrace{ki}_{j}-44\underbrace{kj}_{-i}-48\underbrace{k^2}_{-1} \\
+&=110 \\
+&\quad -32j \\
+&\quad -16k \\
+\end{align}
+```
+
+## 四元数2
+
+```math
+\begin{align}
+&(5-6i-7j-8k)(9+10i+11j+12k) \\
+&=5(9+10i+11j+12k) \\
+&\quad -6i(9+10i+11j+12k) \\
+&\quad -7j(9+10i+11j+12k) \\
+&\quad -8k(9+10i+11j+12k) \\
+&=45+50i+55j+60k \\
+&\quad -54i-60\underbrace{i^2}_{-1}-66\underbrace{ij}_{k}-72\underbrace{ik}_{-j} \\
+&\quad -63j-70\underbrace{ji}_{-k}-77\underbrace{j^2}_{-1}-84\underbrace{jk}_{i} \\
+&\quad -72k-80\underbrace{ki}_{j}-88\underbrace{kj}_{-i}-96\underbrace{k^2}_{-1} \\
+&=278 \\
+&\quad -16j \\
+&\quad -8k \\
+\end{align}
+```
+
+## 四元数3
+
+```math
+\begin{align}
+&(1-2i-3j-4k)(13+14i+15j+16k) \\
+&=1(13+14i+15j+16k) \\
+&\quad -2i(13+14i+15j+16k) \\
+&\quad -3j(13+14i+15j+16k) \\
+&\quad -4k(13+14i+15j+16k) \\
+&=13+14i+15j+16k \\
+&\quad -26i-28\underbrace{i^2}_{-1}-30\underbrace{ij}_{k}-32\underbrace{ik}_{-j} \\
+&\quad -39j-42\underbrace{ji}_{-k}-45\underbrace{j^2}_{-1}-48\underbrace{jk}_{i} \\
+&\quad -52k-56\underbrace{ki}_{j}-60\underbrace{kj}_{-i}-64\underbrace{k^2}_{-1} \\
+&=150 \\
+&\quad -48j \\
+&\quad -24k \\
+\end{align}
+```
+
+## 四元数4
+
+```math
+\begin{align}
+&(5-6i-7j-8k)(13+14i+15j+16k) \\
+&=5(13+14i+15j+16k) \\
+&\quad -6i(13+14i+15j+16k) \\
+&\quad -7j(13+14i+15j+16k) \\
+&\quad -8k(13+14i+15j+16k) \\
+&=65+70i+75j+80k \\
+&\quad -78i-84\underbrace{i^2}_{-1}-90\underbrace{ij}_{k}-96\underbrace{ik}_{-j} \\
+&\quad -91j-98\underbrace{ji}_{-k}-105\underbrace{j^2}_{-1}-112\underbrace{jk}_{i} \\
+&\quad -104k-112\underbrace{ki}_{j}-120\underbrace{kj}_{-i}-128\underbrace{k^2}_{-1} \\
+&=382 \\
+&\quad -32j \\
+&\quad -16k \\
+\end{align}
+```
