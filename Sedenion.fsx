@@ -35,11 +35,11 @@ let rec prod sgn x y =
         left + sgn + "(" + string x + @"\ell)\ell=" + inv + string x
     | L E, L _ -> left + prod inv y x
     | L x, L y ->
-        // (xℓ)(yℓ)=-(yℓ)(xℓ)=(yℓ)(ℓx)=-((yℓ)ℓ)x=yx
-        let sx2, sy2 = string x, string y
+        // (xℓ)(yℓ)=-(xℓ)(ℓy)=((xℓ)ℓ)y=-xy
+        let sx, sy = string x, string y
         let result = prod sgn y x |> right
-        sprintf @"%s%s%s%s=%s(%s\ell)({\ell}%s)=%s((%s\ell)\ell)%s=%s%s%s=%s"
-                left  inv sy sx  sgn sy2 sx2  inv sy2 sx2  sgn sy2 sx2  result
+        sprintf "%s%s(%s\ell)(%s\ell)=%s(%s\ell)({\ell}%s)=%s((%s\ell)\ell)%s=%s%s%s=%s"
+                left  sgn sx sy  inv sx sy  sgn sx sy  inv sx sy  result
     | L _, H _ -> left + prod inv y x
     | H E, L (H E) -> left + sgn + @"h(h\ell)=" + inv + @"\ell"  // h(hℓ)=-ℓ
     | H E, L (H y) ->
@@ -104,11 +104,11 @@ let rec prod sgn x y =
     | H x, H E -> left + sgn + "(" + string x + "h)h=" + inv + string x
     | H E, H _ -> left + prod inv y x
     | H x, H y ->
-        // (xh)(yh)=-(yh)(xh)=(yh)(hx)=-((yh)h)x=yx
-        let sx2, sy2 = string x, string y
+        // (xh)(yh)=-(xh)(hy)=((xh)h)y=-xy
+        let sx, sy = string x, string y
         let result = prod sgn y x |> right
-        sprintf "%s%s%s%s=%s(%sh)(h%s)=%s((%sh)h)%s=%s%s%s=%s"
-                left  inv sy sx  sgn sy2 sx2  inv sy2 sx2  sgn sy2 sx2  result
+        sprintf "%s%s(%sh)(%sh)=%s(%sh)(h%s)=%s((%sh)h)%s=%s%s%s=%s"
+                left  sgn sx sy  inv sx sy  sgn sx sy  inv sx sy  result
     | x, H E -> left + sgn + string (H x)
     | x, H y when x = y ->
         left + sgn + sx + "(" + sx + "h)=" + inv + "h"  // x(yh)=-(xy)h
