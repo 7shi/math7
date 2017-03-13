@@ -83,11 +83,11 @@ let rec prod sgn x y =
         sprintf @"%s%s%s(h\ell)=%s(%sh)\ell=%s%s"
                 left  sgn sx  inv sx  inv (string (L (H x)))
     | x, L (H y) when x = y ->
-        // i((ih)l)=-(i(ih))l=hl
+        // i((ih)ℓ)=-(i(ih))ℓ=hℓ
         sprintf @"%s%s%s(%s_h\ell)=%s(%s%s_h)\ell=%sh\ell=%sh_{\ell}"
                 left  sgn sx sx  inv sx sx  sgn  sgn
     | x, L (H y) ->
-        // i((jh)l)=-(i(jh))l=((ij)h)l=(kh)l
+        // i((jh)ℓ)=-(i(jh))ℓ=((ij)h)ℓ=(kh)ℓ
         let sy = string (H y)
         let sgn2, xy = if x.Next = y then sgn, y.Next else inv, x.Next
         sprintf @"%s%s%s(%s\ell)=%s(%s%s)\ell=%s%s\ell=%s%s"
