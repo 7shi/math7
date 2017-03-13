@@ -71,7 +71,7 @@ let rec prod sgn x y =
     | H x, L y when x = y ->
         // (xh)(xℓ)=-((xh)x)ℓ=(x(xh))ℓ=-hℓ
         let sx2 = string x
-        sprintf @"%s%s%s(%s\ell)=%s(%s%s)\ell=%s(%s%s))\ell=%sh_{\ell}"
+        sprintf @"%s%s%s(%s\ell)=%s(%s%s)\ell=%s(%s%s)\ell=%sh_{\ell}"
                 left  sgn sx sx2  inv sx sx2  sgn sx2 sx  inv
     | H x, L y ->
         // (xh)(yℓ)=-((xh)y)ℓ=-((yx)h)ℓ
